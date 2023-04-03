@@ -103,3 +103,10 @@ section{
     opacity: 1;
     top:0;
 }
+.restrantImage{
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    object-position: center;
+}
