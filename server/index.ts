@@ -42,6 +42,18 @@ app
             res.status(200).json(result.rows)
         })
     })
+    .post("/new", (req: Request, res: Response) => {
+        let pool = openDB()
+
+        pool.query("insert into restaurants (name, address...description) values ($1, $2, ...) returning *",
+        [req.body.description],
+        (error: Error, result: QueryResult) => {
+            if (error) {
+                res.status(500).json({error: error.message})
+            }
+            res.status(200).json({id: result.rows[0].id})
+        })
+    })
 
 
 // Port listening
