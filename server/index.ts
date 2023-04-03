@@ -54,7 +54,35 @@ app
             res.status(200).json({id: result.rows[0].id})
         })
     })
+    .delete("/delete/:id",async (req: Request, res: Response) => {
+        let pool = openDB()
 
+        let id = parseInt(req.params.id)
+
+        pool.query("delete from restaurants where id = $1",
+        [id],
+        (error: Error, result: QueryResult) => {
+            if (error) {
+                res.status(500).json({error: error.message})
+            }
+            res.status(200).json({id: id})
+        })
+    })
+    .put("/update/name/:id", (req: Request, res: Response) => {
+        let pool = openDB()
+
+        let id = req.params.id
+        let description = req.body.description
+
+        pool.query("update restaurants set name = $1 where id= $2 returning *",
+        [description,id],
+        (error: Error, result: QueryResult) => {
+            if (error) {
+                res.status(500).json({error: error.message})
+            }
+            res.status(200).json({id: result.rows[0].id})
+        })
+    })
 
 // Port listening
 app.listen(port, () => {
