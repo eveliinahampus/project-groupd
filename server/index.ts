@@ -1,7 +1,8 @@
 // Import packages required by the app
 import express, {Express, Request, Response} from "express"
 import cors from "cors"
-import {Pool, QueryResult} from "pg"
+import { openDb } from "./database"
+import { QueryResult} from "pg"
 
 // Start new instance of express
 const app: Express = express();
@@ -14,28 +15,10 @@ app.use(express.urlencoded({extended: false}))
 // Port number declaration
 const port: number = 3001;
 
-// Set up connection to the database
-const openDB = (): Pool => {
-  const pool: Pool = new Pool ({
-    user: "postgres",
-    host: "localhost",
-    database: "rr_db",
-    password: "1234",
-    port: 5432
-    // user: "root",
-    // host: "dpg-cggp5tu4daddcg550ivg-a.frankfurt-postgres.render.com",
-    // database: "todo_aiux",
-    // password: "Dp7lxWkQlr9Z1PXdojZIyuf8Q1Br3d57",
-    // port: 5432,
-    // ssl: true
-  })
-  return pool
-}
-
 // Define routes
 app
   .get("/restaurants",(req: Request, res: Response) => {
-    let pool = openDB()
+    let pool = openDb()
 
     pool.query("select * from restaurants", (error: Error,result: QueryResult) => {
         if (error) {
@@ -45,7 +28,7 @@ app
     })
   })
   .post("/new", (req: Request, res: Response) => {
-    let pool = openDB()
+    let pool = openDb()
 
     pool.query("insert into restaurants (name, address...description) values ($1, $2, ...) returning *",
     [req.body.description],
@@ -57,7 +40,7 @@ app
     })
   })
   .delete("/delete/:id",async (req: Request, res: Response) => {
-    let pool = openDB()
+    let pool = openDb()
     let id = parseInt(req.params.id)
 
     pool.query("delete from restaurants where id = $1",
@@ -70,7 +53,7 @@ app
     })
   })
   .put("/update/name/:id", (req: Request, res: Response) => {
-    let pool = openDB()
+    let pool = openDb()
 
     let id = req.params.id
     let description = req.body.description
