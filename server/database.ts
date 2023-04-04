@@ -2,7 +2,7 @@
 import { Pool } from "pg";
 
 // Set up connection to the database
-export const openDb = (): Pool => {
+const openDb = (): Pool => {
     const pool: Pool = new Pool ({
       user: "postgres",
       host: "localhost",
@@ -18,3 +18,5 @@ export const openDb = (): Pool => {
     })
     return pool
   }
+
+  export default openDb
