@@ -16,11 +16,11 @@ const port: number = 3001;
 // Create connection with the database
 const openDB = (): Pool => {
     const pool: Pool = new Pool ({
-        // user: "postgres",
-        // host: "localhost",
-        // database: "todo",
-        // password: "1234",
-        // port: 5432
+        user: "postgres",
+        host: "localhost",
+        database: "todo",
+        password: "1234",
+        port: 5432
         // user: "root",
         // host: "dpg-cggp5tu4daddcg550ivg-a.frankfurt-postgres.render.com",
         // database: "todo_aiux",
