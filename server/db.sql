@@ -6,31 +6,34 @@ CREATE DATABASE restaurant_reviews_db;
 
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  address TEXT NOT NULL,
-  phone_number TEXT
+  name VARCHAR(100) NOT NULL,
+  phone_number VARCHAR(25),
+  street_name VARCHAR(100) NOT NULL,
+  street_number VARCHAR(10) NOT NULL,
+  city VARCHAR(100),
+  zip_code VARCHAR(100)
 );
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username TEXT NOT NULL,
-  email TEXT NOT NULL,
-  password TEXT NOT NULL
-);
-
-CREATE TABLE reviews (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  body TEXT NOT NULL,
-  rating_id INTEGER NOT NULL REFERENCES ratings(id),
-  restaurant_id INTEGER NOT NULL REFERENCES restaurants(id),
-  user_id INTEGER NOT NULL REFERENCES users(id),
-  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+  username VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE ratings (
   id SERIAL PRIMARY KEY,
-  stars INT NOT NULL CHECK (rating >= 1 AND rating <= 5)
+  stars INT NOT NULL CHECK (stars >= 1 AND stars <= 5)
+);
+
+CREATE TABLE reviews (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  body TEXT NOT NULL,
+  rating_id INTEGER NOT NULL REFERENCES ratings(id) ON DELETE CASCADE,
+  restaurant_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user_reviews (
