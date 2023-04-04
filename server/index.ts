@@ -8,12 +8,13 @@ const app: Express = express();
 // Packges used by app
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"))
 app.use(express.urlencoded({extended: false}))
 
 // Port number declaration
 const port: number = 3001;
 
-// Create connection with the database
+// Set up connection to the database
 const openDB = (): Pool => {
     const pool: Pool = new Pool ({
         user: "postgres",
@@ -31,6 +32,7 @@ const openDB = (): Pool => {
     return pool
 }
 
+// Define routes
 app
     .get("/",(req: Request, res: Response) => {
         let pool = openDB()
@@ -84,7 +86,7 @@ app
         })
     })
 
-// Port listening
+// Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
