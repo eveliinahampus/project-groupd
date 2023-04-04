@@ -1,2 +1,6 @@
 # Node dependencies from server directory
 server/node_modules
+
+# Compiled code from TS files
+js/
+server/*.js
