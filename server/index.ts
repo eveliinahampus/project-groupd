@@ -34,7 +34,7 @@ const openDB = (): Pool => {
 
 // Define routes
 app
-  .get("/",(req: Request, res: Response) => {
+  .get("/restaurants",(req: Request, res: Response) => {
     let pool = openDB()
 
     pool.query("select * from restaurants", (error: Error,result: QueryResult) => {
