@@ -19,7 +19,7 @@ const openDB = (): Pool => {
   const pool: Pool = new Pool ({
     user: "postgres",
     host: "localhost",
-    database: "todo",
+    database: "rr_db",
     password: "1234",
     port: 5432
     // user: "root",
