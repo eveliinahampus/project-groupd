@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Define routes
 router
-  .get("/restaurants", (req: Request, res: Response) => {
+  .get("/", (req: Request, res: Response) => {
     let pool = openDb();
 
     pool.query(
@@ -66,5 +66,35 @@ router
       }
     );
   });
+
+router
+  .get("/users", (req: Request, res: Response) => {
+    let pool = openDb();
+
+    pool.query(
+      "select * from users",
+      (error: Error, result: QueryResult) => {
+        if (error) {
+          res.status(500).json({ error: error.message });
+        }
+        res.status(200).json(result.rows);
+      }
+    );
+  })
+
+router
+  .get("/stars-avg", (req: Request, res: Response) => {
+    let pool = openDb();
+
+    pool.query(
+      "select avg(stars)::numeric(10,2) from reviews",
+      (error: Error, result: QueryResult) => {
+        if (error) {
+          res.status(500).json({ error: error.message });
+        }
+        res.status(200).json(result.rows);
+      }
+    );
+  })
 
 export default router;
