@@ -83,11 +83,13 @@ router
   })
 
 router
-  .get("/stars-avg", (req: Request, res: Response) => {
+  .get("/restaurant/stars-avg/:id", (req: Request, res: Response) => {
     let pool = openDb();
+    let id = parseInt(req.params.id)
 
     pool.query(
-      "select avg(stars)::numeric(10,2) from reviews",
+      "select avg(stars)::numeric(10,2) from reviews where restaurant_id = $1",
+      [id],
       (error: Error, result: QueryResult) => {
         if (error) {
           res.status(500).json({ error: error.message });
