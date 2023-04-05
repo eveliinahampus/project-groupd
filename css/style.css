@@ -86,6 +86,16 @@ section{
     border-radius: 100px;
     flex: none;
 }
+.icons{
+    display: flex;
+    justify-content: space-between;
+}
+/*
+.comment{
+    display: flex;
+    justify-content: left;
+}
+*/
 
 .service{
     position:relative;
