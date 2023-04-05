@@ -97,4 +97,19 @@ router
     );
   })
 
+  router
+  .get("/reviews", (req: Request, res: Response) => {
+    let pool = openDb();
+
+    pool.query(
+      "select * from reviews",
+      (error: Error, result: QueryResult) => {
+        if (error) {
+          res.status(500).json({ error: error.message });
+        }
+        res.status(200).json(result.rows);
+      }
+    );
+  })
+
 export default router;
