@@ -144,7 +144,7 @@ router
       }
     );
   })
-  .get("/reviews/stars-avg/:id", (req: Request, res: Response) => {
+  .get("/reviews/avg/:id", (req: Request, res: Response) => {
     let pool = openDb();
     let id = parseInt(req.params.id)
 
