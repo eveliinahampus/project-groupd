@@ -4,7 +4,7 @@ CREATE DATABASE restaurant_reviews_db;
 
 \C restaurant_reviews_db;
 
-CREATE TABLE img (
+CREATE TABLE images (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   title VARCHAR(255) NOT NULL
