@@ -9,28 +9,35 @@ const router = express.Router();
 
 // Define routes for images
 router
-  .get("/images", imgController.getAllImages)
-  .post("/images/new", imgController.createImage)
-  .put("/images/update/:id", imgController.updateImage)
-  .delete("/images/delete/:id", imgController.deleteImage);
+  .get("api/images", imgController.getAllImages)
+  .get("/api/images/:id", imgController.getImageById)
+  .post("api/images", imgController.createImage)
+  .put("api/images/update/:id", imgController.updateImage)
+  .delete("api/images/delete/:id", imgController.deleteImage);
 
 // Define routes for restaurants
 router
-  .get("/restaurants", resController.getAllRestaurants)
-  .post("/restaurants/new", resController.createRestaurant)
-  .put("/restaurants/update/name/:id", resController.updateRestaurant)
-  .delete("/restaurants/delete/:id", resController.deleteRestaurant);
+  .get("api/restaurants", resController.getAllRestaurants)
+  .get("/api/restaurant/:id", resController.getRestaurantById)
+  .post("/apirestaurants", resController.createRestaurant)
+  .put("api/restaurants/update/name/:id", resController.updateRestaurant)
+  .delete("api/restaurants/delete/:id", resController.deleteRestaurant);
 
 // Define routes for users
 router
-  .get("/users", userController.getAllUsers)
-  .post("/users/new", userController.createUser)
-  .put("/users/update/name/:id", userController.updateUser)
-  .delete("/users/delete/:id", userController.deleteUser);
+  .get("api/users", userController.getAllUsers)
+  .get("/api/users/:id", userController.getUserById)
+  .post("api/users", userController.createUser)
+  .put("api/users/update/:id", userController.updateUser)
+  .delete("api/users/delete/:id", userController.deleteUser);
 
 // Define routes for reviews
 router
-  .get("/reviews", revController.getAllReviews)
-  .get("/reviews/avg/:id", revController.getAverage);
+  .get("api/reviews", revController.getAllReviews)
+  .get("/api/reviews/:id", revController.getReviewById)
+  .get("api/reviews/avg/:id", revController.getAverageStars)
+  .post("api/reviews", revController.createReview)
+  .put("api/reviews/update/:id", revController.updateReview)
+  .delete("api/reviews/delete/:id", revController.deleteReview)
 
 export default router;

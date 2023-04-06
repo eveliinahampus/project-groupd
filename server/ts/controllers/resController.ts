@@ -19,13 +19,34 @@ const getAllRestaurants = (req: Request, res: Response) => {
   });
 };
 
+// Retrieves restaurant by given id
+const getRestaurantById = (req: Request, res: Response) => {
+  // Connect to the database
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  // Query the database to retrieve all the restaurants
+  pool.query("select * from restaurants where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      // Handle errors and return an error response
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    // Return the retrieved restaurants as a success response
+    res.status(200).json(result.rows);
+  });
+};
+
 // Adds a new restaurant to the database
 const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
+  let { name, phone_number, street_name, street_number, city, zip_code } = req.body
 
   pool.query(
     "insert into restaurants (name, phone_number, street_name, street_number, city, zip_code) values ($1, $2, $3, $4, $5, $6) returning *",
-    [req.body.description],
+    [name, phone_number, street_name, street_number, city, zip_code],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -40,12 +61,12 @@ const createRestaurant = (req: Request, res: Response) => {
 const updateRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
-  let description = req.body.description;
+  let id = parseInt(req.params.id);
+  let restaurantName = req.body.name;
 
   pool.query(
     "update restaurants set name = $1 where id= $2 returning *",
-    [description, id],
+    [restaurantName, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -77,6 +98,7 @@ const deleteRestaurant = async (req: Request, res: Response) => {
 // Export all the functions as an object to be imported by other modules
 export default {
   getAllRestaurants,
+  getRestaurantById,
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,

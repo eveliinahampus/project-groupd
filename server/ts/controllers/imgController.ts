@@ -14,12 +14,29 @@ const getAllImages = (req: Request, res: Response) => {
   });
 };
 
+// Retrieves image by given id
+const getImageById = (req: Request, res: Response) => {
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  pool.query("select * from images where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    res.status(200).json(result.rows);
+  });
+};
+
 const createImage = (req: Request, res: Response) => {
   let pool = openDb();
+  let { name, title } = req.body;
 
   pool.query(
     "insert into images (title, name) values ($1, $2) returning *",
-    [req.body.description],
+    [name,title],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -33,7 +50,7 @@ const createImage = (req: Request, res: Response) => {
 const updateImage = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
+  let id = parseInt(req.params.id);
   let description = req.body.description;
 
   pool.query(
@@ -66,4 +83,4 @@ const deleteImage = async (req: Request, res: Response) => {
   );
 };
 
-export default { getAllImages, createImage, updateImage, deleteImage };
+export default { getAllImages, getImageById, createImage, updateImage, deleteImage };

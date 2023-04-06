@@ -14,12 +14,29 @@ const getAllUsers = (req: Request, res: Response) => {
   });
 };
 
+// Retrieves User by given id
+const getUserById = (req: Request, res: Response) => {
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  pool.query("select * from users where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    res.status(200).json(result.rows);
+  });
+};
+
 const createUser = (req: Request, res: Response) => {
   let pool = openDb();
+  let { username, email, password } = req.body
 
   pool.query(
     "insert into users (username, email, password) values ($1, $2, $3) returning *",
-    [req.body.description],
+    [username, email, password],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -33,12 +50,12 @@ const createUser = (req: Request, res: Response) => {
 const updateUser = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
-  let description = req.body.description;
+  let id = parseInt(req.params.id);
+  let name = req.body.name;
 
   pool.query(
     "update users set name = $1 where id= $2 returning *",
-    [description, id],
+    [name, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -66,4 +83,4 @@ const deleteUser = async (req: Request, res: Response) => {
   );
 };
 
-export default { getAllUsers, createUser, updateUser, deleteUser };
+export default { getAllUsers, getUserById, createUser, updateUser, deleteUser };
