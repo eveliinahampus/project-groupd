@@ -23,7 +23,7 @@ const getAllRestaurants = (req: Request, res: Response) => {
 }
 
 // Adds a new restaurant to the database
-const addNewRestaurant = (req: Request, res: Response) => {
+const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
   pool.query(
@@ -78,4 +78,4 @@ const deleteRestaurant = async (req: Request, res: Response) => {
 }
 
 // Export all the functions as an object to be imported by other modules
-export default { getAllRestaurants, addNewRestaurant, updateRestaurant, deleteRestaurant};
+export default { getAllRestaurants, createRestaurant, updateRestaurant, deleteRestaurant};
