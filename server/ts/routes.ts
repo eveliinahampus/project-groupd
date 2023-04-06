@@ -31,6 +31,9 @@ router
 // Define routes for reviews
 router
   .get("/reviews", revController.getAllReviews)
-  .get("/reviews/avg/:id", revController.getAverage);
+  .get("/reviews/avg/:id", revController.getAverage)
+  .post("/reviews/new", revController.createReview)
+  .put("/reviews/update/:id", revController.updateReview)
+  .delete("/reviews/delete/:id", revController.deleteReview)
 
 export default router;

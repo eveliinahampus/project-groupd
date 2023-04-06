@@ -25,7 +25,7 @@ const createRestaurant = (req: Request, res: Response) => {
 
   pool.query(
     "insert into restaurants (name, phone_number, street_name, street_number, city, zip_code) values ($1, $2, $3, $4, $5, $6) returning *",
-    [req.body.description],
+    [req.body.name, req.body.phone_number, req.body.street_name, req.body.street_number, req.body.city, req.body.zip_code],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -40,12 +40,12 @@ const createRestaurant = (req: Request, res: Response) => {
 const updateRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
-  let description = req.body.description;
+  let id = parseInt(req.params.id);
+  let restaurantName = req.body.name;
 
   pool.query(
     "update restaurants set name = $1 where id= $2 returning *",
-    [description, id],
+    [restaurantName, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

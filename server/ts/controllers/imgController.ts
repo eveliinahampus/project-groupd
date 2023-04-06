@@ -33,7 +33,7 @@ const createImage = (req: Request, res: Response) => {
 const updateImage = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
+  let id = parseInt(req.params.id);
   let description = req.body.description;
 
   pool.query(

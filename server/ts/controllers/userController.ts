@@ -33,12 +33,12 @@ const createUser = (req: Request, res: Response) => {
 const updateUser = (req: Request, res: Response) => {
   let pool = openDb();
 
-  let id = req.params.id;
-  let description = req.body.description;
+  let id = parseInt(req.params.id);
+  let name = req.body.name;
 
   pool.query(
     "update users set name = $1 where id= $2 returning *",
-    [description, id],
+    [name, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
