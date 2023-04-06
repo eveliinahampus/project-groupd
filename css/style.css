@@ -91,7 +91,7 @@ section{
     justify-content: space-between;
 }
 /*
-.comment{
+.recommendation{
     display: flex;
     justify-content: left;
 }
@@ -135,12 +135,12 @@ section{
     background-size: cover;
 } */
 
-/*comments section*/
-.comment{
+/*recommendations section*/
+.recommendation{
     position: relative;
     overflow: hidden;
 }
-.comment .overlay{
+.recommendation .overlay{
     position: absolute;
     top: 0;
     left: 0;
@@ -159,14 +159,14 @@ section{
 img{
    width: 100%;
 }
-.comment img{
+.recommendation img{
     transition: all 0.4s ease;
 }
 
-.comment:hover .overlay{
+.recommendation:hover .overlay{
     opacity: 1;
 }
 
-.comment:hover img{
+.recommendation:hover img{
     transform: scale(1.1);
 }
