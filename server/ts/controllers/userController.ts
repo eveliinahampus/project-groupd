@@ -14,6 +14,22 @@ const getAllUsers = (req: Request, res: Response) => {
   });
 };
 
+// Retrieves User by given id
+const getUserById = (req: Request, res: Response) => {
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  pool.query("select * from users where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    res.status(200).json(result.rows);
+  });
+};
+
 const createUser = (req: Request, res: Response) => {
   let pool = openDb();
 
@@ -66,4 +82,4 @@ const deleteUser = async (req: Request, res: Response) => {
   );
 };
 
-export default { getAllUsers, createUser, updateUser, deleteUser };
+export default { getAllUsers, getUserById, createUser, updateUser, deleteUser };

@@ -14,7 +14,23 @@ const getAllReviews = (req: Request, res: Response) => {
   });
 };
 
-const getAverage = (req: Request, res: Response) => {
+// Retrieves review by given id
+const getReviewById = (req: Request, res: Response) => {
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  pool.query("select * from reviews where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    res.status(200).json(result.rows);
+  });
+};
+
+const getAverageStars = (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
@@ -85,4 +101,4 @@ const deleteReview = async (req: Request, res: Response) => {
   );
 }
 
-export default { getAllReviews, getAverage, createReview, updateReview, deleteReview };
+export default { getAllReviews, getReviewById ,getAverageStars, createReview, updateReview, deleteReview };

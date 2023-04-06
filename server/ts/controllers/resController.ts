@@ -19,6 +19,26 @@ const getAllRestaurants = (req: Request, res: Response) => {
   });
 };
 
+// Retrieves restaurant by given id
+const getRestaurantById = (req: Request, res: Response) => {
+  // Connect to the database
+  let pool = openDb();
+  let id = parseInt(req.params.id)
+
+  // Query the database to retrieve all the restaurants
+  pool.query("select * from restaurants where id = $1",
+  [id],
+  (err: Error, result: QueryResult) => {
+    if (err) {
+      // Handle errors and return an error response
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    // Return the retrieved restaurants as a success response
+    res.status(200).json(result.rows);
+  });
+};
+
 // Adds a new restaurant to the database
 const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
@@ -77,6 +97,7 @@ const deleteRestaurant = async (req: Request, res: Response) => {
 // Export all the functions as an object to be imported by other modules
 export default {
   getAllRestaurants,
+  getRestaurantById,
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,
