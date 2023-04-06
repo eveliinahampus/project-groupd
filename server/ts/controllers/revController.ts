@@ -49,12 +49,13 @@ const getAverageStars = (req: Request, res: Response) => {
 
 const createReview = (req: Request, res: Response) => {
   let pool = openDb();
-  let stars = parseInt(req.body.stars)
-  let restaurant_id = parseInt(req.body.restaurant_id)
-  let user_id = parseInt(req.body.user_id)
+  let { title, body, stars, restaurant_id, user_id} = req.body;
+  let parsedStars = parseInt(stars)
+  let parsedRestaurant_id = parseInt(restaurant_id)
+  let parsedUser_id = parseInt(user_id)
 
   pool.query("insert into reviews (title,body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
-    [req.body.title,req.body.body,stars,restaurant_id,user_id],
+    [title, body, parsedStars, parsedRestaurant_id, parsedUser_id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message})

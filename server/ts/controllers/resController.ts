@@ -42,10 +42,11 @@ const getRestaurantById = (req: Request, res: Response) => {
 // Adds a new restaurant to the database
 const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
+  let { name, phone_number, street_name, street_number, city, zip_code } = req.body
 
   pool.query(
     "insert into restaurants (name, phone_number, street_name, street_number, city, zip_code) values ($1, $2, $3, $4, $5, $6) returning *",
-    [req.body.name, req.body.phone_number, req.body.street_name, req.body.street_number, req.body.city, req.body.zip_code],
+    [name, phone_number, street_name, street_number, city, zip_code],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

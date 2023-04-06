@@ -32,10 +32,11 @@ const getImageById = (req: Request, res: Response) => {
 
 const createImage = (req: Request, res: Response) => {
   let pool = openDb();
+  let { name, title } = req.body;
 
   pool.query(
     "insert into images (title, name) values ($1, $2) returning *",
-    [req.body.description],
+    [name,title],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

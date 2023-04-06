@@ -32,10 +32,11 @@ const getUserById = (req: Request, res: Response) => {
 
 const createUser = (req: Request, res: Response) => {
   let pool = openDb();
+  let { username, email, password } = req.body
 
   pool.query(
     "insert into users (username, email, password) values ($1, $2, $3) returning *",
-    [req.body.description],
+    [username, email, password],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
