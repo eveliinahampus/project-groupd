@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import openDb from "./database";
+import openDb from "../database";
 import { QueryResult } from "pg";
 
 // Retrieves all the restaurants in the database
@@ -8,22 +8,19 @@ const getAllRestaurants = (req: Request, res: Response) => {
   let pool = openDb();
 
   // Query the database to retrieve all the restaurants
-  pool.query(
-    "select * from restaurants",
-    (err: Error, result: QueryResult) => {
-      if (err) {
-        // Handle errors and return an error response
-        res.status(500).json({ err: err.message });
-        return;
-      }
-      // Return the retrieved restaurants as a success response
-      res.status(200).json(result.rows);
+  pool.query("select * from restaurants", (err: Error, result: QueryResult) => {
+    if (err) {
+      // Handle errors and return an error response
+      res.status(500).json({ err: err.message });
+      return;
     }
-  );
-}
+    // Return the retrieved restaurants as a success response
+    res.status(200).json(result.rows);
+  });
+};
 
 // Adds a new restaurant to the database
-const addNewRestaurant = (req: Request, res: Response) => {
+const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
   pool.query(
@@ -37,7 +34,7 @@ const addNewRestaurant = (req: Request, res: Response) => {
       res.status(200).json({ id: result.rows[0].id });
     }
   );
-}
+};
 
 // Update an existing restaurant's name in the database
 const updateRestaurant = (req: Request, res: Response) => {
@@ -57,7 +54,7 @@ const updateRestaurant = (req: Request, res: Response) => {
       res.status(200).json({ id: result.rows[0].id });
     }
   );
-}
+};
 
 // Delete an existing restaurant from the database
 const deleteRestaurant = async (req: Request, res: Response) => {
@@ -75,7 +72,12 @@ const deleteRestaurant = async (req: Request, res: Response) => {
       res.status(200).json({ id: id });
     }
   );
-}
+};
 
 // Export all the functions as an object to be imported by other modules
-export default { getAllRestaurants, addNewRestaurant, updateRestaurant, deleteRestaurant};
+export default {
+  getAllRestaurants,
+  createRestaurant,
+  updateRestaurant,
+  deleteRestaurant,
+};
