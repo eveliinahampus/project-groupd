@@ -170,3 +170,11 @@ img{
 .recommendation:hover img{
     transform: scale(1.1);
 }
+
+/*team section*/
+.team-member img{
+    width: 125px;
+    height: 125px;
+    border-radius: 100px;
+    object-fit: cover;
+}
