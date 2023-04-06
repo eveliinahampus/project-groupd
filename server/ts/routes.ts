@@ -5,6 +5,19 @@ import { QueryResult } from "pg";
 // Create a new router object
 const router = express.Router();
 
+// Define routes for images
+router.get("/images", (req: Request, res: Response) => {
+  const pool = openDb();
+  pool.query("select * from img", (err: Error, result: QueryResult) => {
+    if (err) {
+      //res.statusMessage = err.message
+      res.status(500).json({ err: err.message });
+      return;
+    }
+    res.status(200).json(result.rows);
+  });
+});
+
 // Define routes for restaurants
 router
   .get("/restaurants", (req: Request, res: Response) => {
@@ -12,9 +25,10 @@ router
 
     pool.query(
       "select * from restaurants",
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json(result.rows);
       }
@@ -26,9 +40,10 @@ router
     pool.query(
       "insert into restaurants (name, phone_number, street_name, street_number, city, zip_code) values ($1, $2, $3, $4, $5, $6) returning *",
       [req.body.description],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: result.rows[0].id });
       }
@@ -43,9 +58,10 @@ router
     pool.query(
       "update restaurants set name = $1 where id= $2 returning *",
       [description, id],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: result.rows[0].id });
       }
@@ -58,9 +74,10 @@ router
     pool.query(
       "delete from restaurants where id = $1",
       [id],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: id });
       }
@@ -72,15 +89,13 @@ router
   .get("/users", (req: Request, res: Response) => {
     let pool = openDb();
 
-    pool.query(
-      "select * from users",
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
-        }
-        res.status(200).json(result.rows);
+    pool.query("select * from users", (err: Error, result: QueryResult) => {
+      if (err) {
+        res.status(500).json({ err: err.message });
+        return;
       }
-    );
+      res.status(200).json(result.rows);
+    });
   })
   .post("/users/new", (req: Request, res: Response) => {
     let pool = openDb();
@@ -88,9 +103,10 @@ router
     pool.query(
       "insert into users (username, email, password) values ($1, $2, $3) returning *",
       [req.body.description],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: result.rows[0].id });
       }
@@ -105,9 +121,10 @@ router
     pool.query(
       "update users set name = $1 where id= $2 returning *",
       [description, id],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: result.rows[0].id });
       }
@@ -120,9 +137,10 @@ router
     pool.query(
       "delete from restaurants where id = $1",
       [id],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json({ id: id });
       }
@@ -134,30 +152,29 @@ router
   .get("/reviews", (req: Request, res: Response) => {
     let pool = openDb();
 
-    pool.query(
-      "select * from reviews",
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
-        }
-        res.status(200).json(result.rows);
+    pool.query("select * from reviews", (err: Error, result: QueryResult) => {
+      if (err) {
+        res.status(500).json({ err: err.message });
+        return;
       }
-    );
+      res.status(200).json(result.rows);
+    });
   })
   .get("/reviews/avg/:id", (req: Request, res: Response) => {
     let pool = openDb();
-    let id = parseInt(req.params.id)
+    let id = parseInt(req.params.id);
 
     pool.query(
       "select avg(stars)::numeric(10,2) from reviews where restaurant_id = $1",
       [id],
-      (error: Error, result: QueryResult) => {
-        if (error) {
-          res.status(500).json({ error: error.message });
+      (err: Error, result: QueryResult) => {
+        if (err) {
+          res.status(500).json({ err: err.message });
+          return;
         }
         res.status(200).json(result.rows);
       }
     );
-  })
+  });
 
 export default router;
