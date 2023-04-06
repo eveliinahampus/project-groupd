@@ -54,7 +54,7 @@ const deleteUser = async (req: Request, res: Response) => {
     let id = parseInt(req.params.id);
 
     pool.query(
-      "delete from restaurants where id = $1",
+      "delete from users where id = $1",
       [id],
       (err: Error, result: QueryResult) => {
         if (err) {
