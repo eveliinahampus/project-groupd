@@ -1,7 +1,6 @@
-// Import packages required by the app
+// Import modules and interface required by the app
 import express, { Express } from "express";
 import cors from "cors";
-
 // Import the router module
 import router from "./routes";
 
