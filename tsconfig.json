@@ -5,5 +5,5 @@
     "rootDir": "ts",
     "outDir": "js",
   },
-  "exclude": ["server/*.ts"]
+  "exclude": ["server/**/*.ts"]
 }
