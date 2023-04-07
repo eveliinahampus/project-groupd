@@ -3,7 +3,8 @@ import openDb from "../database";
 import { QueryResult } from "pg";
 
 const getAllImages = (req: Request, res: Response) => {
-  const pool = openDb();
+  let pool = openDb();
+
   pool.query("select * from img", (err: Error, result: QueryResult) => {
     if (err) {
       //res.statusMessage = err.message
@@ -19,7 +20,7 @@ const getImageById = (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id)
 
-  pool.query("select * from images where id = $1",
+  pool.query("select * from img where id = $1",
   [id],
   (err: Error, result: QueryResult) => {
     if (err) {
