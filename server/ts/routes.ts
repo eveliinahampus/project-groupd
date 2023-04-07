@@ -1,11 +1,11 @@
-import express, { Request, Response } from "express";
+import express, { Router } from "express";
 import resController from "./controllers/resController";
 import revController from "./controllers/revController";
 import userController from "./controllers/userController";
 import imgController from "./controllers/imgController";
 
 // Create a new router object
-const router = express.Router();
+const router: Router = express.Router();
 
 // Define routes for images
 router

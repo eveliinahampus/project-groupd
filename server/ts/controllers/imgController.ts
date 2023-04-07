@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import openDb from "../database";
 import { QueryResult } from "pg";
 
