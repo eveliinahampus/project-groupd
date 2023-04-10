@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import openDb from "../database";
+import openDb from "../db_connect";
 import { QueryResult } from "pg";
 
 const getAllReviews = (req: Request, res: Response) => {
@@ -17,17 +17,19 @@ const getAllReviews = (req: Request, res: Response) => {
 // Retrieves review by given id
 const getReviewById = (req: Request, res: Response) => {
   let pool = openDb();
-  let id = parseInt(req.params.id)
+  let id = parseInt(req.params.id);
 
-  pool.query("select * from reviews where id = $1",
-  [id],
-  (err: Error, result: QueryResult) => {
-    if (err) {
-      res.status(500).json({ err: err.message });
-      return;
+  pool.query(
+    "select * from reviews where id = $1",
+    [id],
+    (err: Error, result: QueryResult) => {
+      if (err) {
+        res.status(500).json({ err: err.message });
+        return;
+      }
+      res.status(200).json(result.rows);
     }
-    res.status(200).json(result.rows);
-  });
+  );
 };
 
 const getAverageStars = (req: Request, res: Response) => {
@@ -49,39 +51,41 @@ const getAverageStars = (req: Request, res: Response) => {
 
 const createReview = (req: Request, res: Response) => {
   let pool = openDb();
-  let { title, body, stars, restaurant_id, user_id} = req.body;
-  let parsedStars = parseInt(stars)
-  let parsedRestaurant_id = parseInt(restaurant_id)
-  let parsedUser_id = parseInt(user_id)
+  let { title, body, stars, restaurant_id, user_id } = req.body;
+  let parsedStars = parseInt(stars);
+  let parsedRestaurant_id = parseInt(restaurant_id);
+  let parsedUser_id = parseInt(user_id);
 
-  pool.query("insert into reviews (title,body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
+  pool.query(
+    "insert into reviews (title,body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
     [title, body, parsedStars, parsedRestaurant_id, parsedUser_id],
     (err: Error, result: QueryResult) => {
       if (err) {
-        res.status(500).json({ err: err.message})
+        res.status(500).json({ err: err.message });
         return;
       }
       res.status(200).json(result.rows);
     }
   );
-}
+};
 
 const updateReview = (req: Request, res: Response) => {
   let pool = openDb();
-  let id = parseInt(req.params.id)
-  let { title, body } = req.body
+  let id = parseInt(req.params.id);
+  let { title, body } = req.body;
 
-  pool.query("update reviews set title = $1  AND set body = $2 where id = $3 returning *",
-    [title,body,id],
+  pool.query(
+    "update reviews set title = $1  AND set body = $2 where id = $3 returning *",
+    [title, body, id],
     (err: Error, result: QueryResult) => {
       if (err) {
-        res.status(500).json({ err: err.message})
+        res.status(500).json({ err: err.message });
         return;
       }
       res.status(200).json(result.rows);
     }
   );
-}
+};
 
 const deleteReview = async (req: Request, res: Response) => {
   let pool = openDb();
@@ -98,6 +102,13 @@ const deleteReview = async (req: Request, res: Response) => {
       res.status(200).json({ id: id });
     }
   );
-}
+};
 
-export default { getAllReviews, getReviewById ,getAverageStars, createReview, updateReview, deleteReview };
+export default {
+  getAllReviews,
+  getReviewById,
+  getAverageStars,
+  createReview,
+  updateReview,
+  deleteReview,
+};
