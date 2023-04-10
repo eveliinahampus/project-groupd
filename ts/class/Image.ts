@@ -1,4 +1,4 @@
-class Gallery_Image {
+class Image {
   id: number
   name: string
   title: string
@@ -10,4 +10,4 @@ class Gallery_Image {
   }
 }
 
-export { Gallery_Image }
+export { Image }
