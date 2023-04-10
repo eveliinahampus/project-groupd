@@ -1,5 +1,5 @@
 // Import modules and interface required by the app
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import cors from "cors";
 // Import the router module
 import router from "./routes";
@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Tell the app to use the router module for all routes starting with "/"
 app.use("/", router);
+app.use("*", (req: Request, res: Response) => {
+  res.status(404).send("<h2> Sorry, the requested resource was not found.</h2>")
+})
 
 // Start the server
 app.listen(port, () => {
