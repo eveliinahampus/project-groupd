@@ -5,7 +5,7 @@ import { QueryResult } from "pg";
 const getAllImages = (req: Request, res: Response) => {
   let pool = openDb();
 
-  pool.query("select * from img", (err: Error, result: QueryResult) => {
+  pool.query("select * from images", (err: Error, result: QueryResult) => {
     if (err) {
       res.statusMessage = err.message;
       res.status(500).json({ err: err.message });
@@ -21,7 +21,7 @@ const getImageById = (req: Request, res: Response) => {
   let id = parseInt(req.params.id);
 
   pool.query(
-    "select * from img where id = $1",
+    "select * from images where id = $1",
     [id],
     (err: Error, result: QueryResult) => {
       if (err) {
