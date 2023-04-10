@@ -11,9 +11,13 @@ class Gallery {
   getImages = async() => {
     return new Promise(async(resolve,reject) => {
       fetch(this.#backend_url)
-      .then(response => response.json()) 
-      .then((response) => {
-        this.#readJson(response)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      }) 
+      .then((data) => {
+        this.#readJson(data)
         resolve(this.images)
       },(error) => {
         reject(error) 
@@ -23,7 +27,7 @@ class Gallery {
 
   #readJson(imagesAsJson: any): void {
     imagesAsJson.forEach(element => {
-      const gallery_image: Gallery_Image = new Gallery_Image(element.id,element.title,element.name)
+      const gallery_image: Gallery_Image = new Gallery_Image(element.id,element.name,element.title)
       this.images.push(gallery_image)
     });
   }
