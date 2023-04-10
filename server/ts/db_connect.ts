@@ -1,20 +1,19 @@
 // Import required package
 import { Pool } from "pg";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Set up connection to the database
 const openDb = (): Pool => {
     const pool: Pool = new Pool ({
-      user: "postgres",
-      host: "localhost",
-      database: "rr_db",
-      password: "1234",
-      port: 5432
-      // user: "root",
-      // host: "dpg-cggp5tu4daddcg550ivg-a.frankfurt-postgres.render.com",
-      // database: "todo_aiux",
-      // password: "Dp7lxWkQlr9Z1PXdojZIyuf8Q1Br3d57",
-      // port: 5432,
-      // ssl: true
+      user: process.env.DB_USER,
+      host: process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      password: process.env.DB_PASSWORD,
+      port: Number(process.env.DB_PORT),
+      ssl: process.env.DB_SSL === 'true',
     })
     return pool
   }
