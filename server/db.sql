@@ -5,9 +5,9 @@ CREATE DATABASE restaurant_reviews_db;
 \C restaurant_reviews_db;
 
 CREATE TABLE images (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255),
-  title VARCHAR(255) NOT NULL
+  id  serial primary key,
+  title varchar(255) NOT NULL,
+  name varchar(255) NOT NULL
 );
 
 CREATE TABLE restaurants (
