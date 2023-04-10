@@ -1,12 +1,12 @@
 class Gallery_Image {
   id: number
-  title: string
   name: string
+  title: string
 
-  constructor(id: number,title:string,name:string) {
+  constructor(id: number,name:string,title:string) {
     this.id = id
-    this.title = title
     this.name = name
+    this.title = title
   }
 }
 
