@@ -1,12 +1,12 @@
 class Image {
   id: number
+  titel: string
   name: string
-  title: string
 
-  constructor(id: number,name:string,title:string) {
+  constructor(id: number,title:string,name:string) {
     this.id = id
+    this.titel = title
     this.name = name
-    this.title = title
   }
 }
 

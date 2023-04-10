@@ -1,5 +1,5 @@
 import { Gallery } from "./class/Gallery.js";
-import { Gallery_Image } from "./class/Image";
+import { Image } from "./class/Image.js";
 
 const BACKEND_ROOT_URL = "http://localhost:3001/api/images";
 
@@ -11,7 +11,7 @@ const gallery: Gallery = new Gallery(BACKEND_ROOT_URL);
 
 gallery
   .getImages()
-  .then((images: Array<Gallery_Image>) => {
+  .then((images: Array<Image>) => {
     images.forEach((image) => {
       renderImage(image);
     });

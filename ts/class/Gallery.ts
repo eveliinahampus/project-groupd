@@ -1,4 +1,4 @@
-import { Image } from "./Image";
+import { Image } from "./Image.js";
 
 class Gallery {
   images: Array<Image> = [];
@@ -32,8 +32,8 @@ class Gallery {
     imagesAsJson.forEach((element) => {
       const gallery_image: Image = new Image(
         element.id,
-        element.name,
-        element.title
+        element.title,
+        element.name
       );
       this.images.push(gallery_image);
     });
