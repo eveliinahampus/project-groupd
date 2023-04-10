@@ -69,12 +69,10 @@ const createReview = (req: Request, res: Response) => {
 const updateReview = (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id)
-  // let stars = parseInt(req.body.stars)
-  // let restaurant_id = parseInt(req.body.restaurant_id)
-  // let user_id = parseInt(req.body.user_id)
+  let { title, body } = req.body
 
   pool.query("update reviews set title = $1  AND set body = $2 where id = $3 returning *",
-    [req.body.title,req.body.body,id],
+    [title,body,id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message})

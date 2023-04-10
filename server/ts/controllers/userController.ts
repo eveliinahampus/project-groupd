@@ -51,7 +51,7 @@ const updateUser = (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
-  let name = req.body.name;
+  let { name, email, password } = req.body;
 
   pool.query(
     "update users set name = $1 where id= $2 returning *",

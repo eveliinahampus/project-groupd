@@ -7,7 +7,7 @@ const getAllImages = (req: Request, res: Response) => {
 
   pool.query("select * from img", (err: Error, result: QueryResult) => {
     if (err) {
-      //res.statusMessage = err.message
+      res.statusMessage = err.message
       res.status(500).json({ err: err.message });
       return;
     }
@@ -52,11 +52,11 @@ const updateImage = (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
-  let description = req.body.description;
+  let { name, title } = req.body;
 
   pool.query(
-    "update images set name = $1 where id= $2 returning *",
-    [description, id],
+    "update images set name = $1 and set title= $2 where id= $3 returning *",
+    [name, title, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

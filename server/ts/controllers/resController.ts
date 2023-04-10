@@ -62,11 +62,11 @@ const updateRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
-  let restaurantName = req.body.name;
+  let { name } = req.body.name;
 
   pool.query(
     "update restaurants set name = $1 where id= $2 returning *",
-    [restaurantName, id],
+    [name, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
