@@ -4,3 +4,6 @@ server/node_modules
 # Compiled code from TS files
 js/
 server/js
+
+# Environment variables
+.env
