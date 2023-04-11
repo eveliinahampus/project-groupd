@@ -13,13 +13,13 @@ router
   .post("/api/images", imgController.createImage)
   .get("/api/images/:id", imgController.getImageById)
   .put("/api/images/update/:id", imgController.updateImage)
-  .delete("api/images/delete/:id", imgController.deleteImage);
+  .delete("/api/images/delete/:id", imgController.deleteImage);
 
 // Define routes for restaurants
 router
   .get("/api/restaurants", resController.getAllRestaurants)
-  .post("/apirestaurants", resController.createRestaurant)
-  .get("/api/restaurant/:id", resController.getRestaurantById)
+  .post("/api/restaurants", resController.createRestaurant)
+  .get("/api/restaurants/:id", resController.getRestaurantById)
   .put("/api/restaurants/update/name/:id", resController.updateRestaurant)
   .delete("/api/restaurants/delete/:id", resController.deleteRestaurant);
 
