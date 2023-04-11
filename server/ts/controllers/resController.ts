@@ -44,12 +44,12 @@ const getRestaurantById = (req: Request, res: Response) => {
 // Adds a new restaurant to the database
 const createRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
-  let { name, phone_number, street_name, street_number, city, zip_code } =
+  let { name, phone_number, street_address, city, zip_code } =
     req.body;
 
   pool.query(
-    "insert into restaurants (name, phone_number, street_name, street_number, city, zip_code) values ($1, $2, $3, $4, $5, $6) returning *",
-    [name, phone_number, street_name, street_number, city, zip_code],
+    "insert into restaurants (name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *",
+    [name, phone_number, street_address, city, zip_code],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -60,16 +60,16 @@ const createRestaurant = (req: Request, res: Response) => {
   );
 };
 
-// Update an existing restaurant's name in the database
+// Update an existing restaurant's infomation in the database
 const updateRestaurant = (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
-  let { name } = req.body.name;
+  let { name,phone_number,street_address,city,zip_code } = req.body;
 
   pool.query(
-    "update restaurants set name = $1 where id= $2 returning *",
-    [name, id],
+    "update restaurants set name = $1, phone_number = $2, street_address = $3, city = $4, zip_code = $5 where id= $2 returning *",
+    [name,phone_number,street_address,city,zip_code,id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
