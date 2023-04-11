@@ -19,12 +19,11 @@
    ```sh
    npm i
    ```
+4. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace with the correct values for your database.
    
 ### Run the server locally
 In the server directory, start the development server by running:
    ```sh
    npm run devStart
    ```
-Backend will be running on port 3001.
-
-_**Note**: In the server directory, open **sample.env** and copy its content into a new file named **.env**, then set the correct values for the conneciton._
+Backend will be running on **http://localhost:3001**.
