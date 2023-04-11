@@ -51,10 +51,11 @@ const getAverageStars = (req: Request, res: Response) => {
 
 const createReview = (req: Request, res: Response) => {
   let pool = openDb();
-  let { title, body, stars, restaurant_id, user_id } = req.body;
-  let parsedStars = parseInt(stars);
-  let parsedRestaurant_id = parseInt(restaurant_id);
-  let parsedUser_id = parseInt(user_id);
+  let title = req.body.titel
+  let body = req.body.body
+  let parsedStars = parseInt(req.body.stars);
+  let parsedRestaurant_id = parseInt(req.body.restaurant_id);
+  let parsedUser_id = parseInt(req.body.user_id);
 
   pool.query(
     "insert into reviews (title,body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
@@ -71,12 +72,15 @@ const createReview = (req: Request, res: Response) => {
 
 const updateReview = (req: Request, res: Response) => {
   let pool = openDb();
-  let id = parseInt(req.params.id);
-  let { title, body } = req.body;
+  let title = req.body.titel
+  let body = req.body.body
+  let userId = parseInt(req.params.userId)
+  let restaurantId = parseInt(req.params.restaurantId)
+  let parsedStars = parseInt(req.body.stars);
 
   pool.query(
-    "update reviews set title = $1  AND set body = $2 where id = $3 returning *",
-    [title, body, id],
+    "update reviews set title = $1, body = $2, stars = $3 where user_id = $4 and restaurant_id = %5 returning *",
+    [title, body, parsedStars, userId, restaurantId],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

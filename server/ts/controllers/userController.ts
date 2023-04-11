@@ -56,8 +56,8 @@ const updateUser = (req: Request, res: Response) => {
   let { name, email, password } = req.body;
 
   pool.query(
-    "update users set name = $1 where id= $2 returning *",
-    [name, id],
+    "update users set name = $1, email = $2, password = $3 where id= $4 returning *",
+    [name, email, password, id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
