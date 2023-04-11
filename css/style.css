@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6,.display-4{
     color: var(--dark);
 }
 
-a{
+a,p{
     color: var(--dark);
     text-decoration: none;
 }
@@ -177,4 +177,15 @@ img{
     height: 125px;
     border-radius: 100px;
     object-fit: cover;
+}
+
+/*register section*/
+form input.form-control{
+    height: 56px;
+}
+
+form .form-control{
+    border:transparent;
+    border-radius: 0;
+    background-color: rgba(0,0,0,0.04);
 }
