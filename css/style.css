@@ -189,3 +189,66 @@ form .form-control{
     border-radius: 0;
     background-color: rgba(0,0,0,0.04);
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Log styles */
+Body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: #0d6efd;*/
+}
+
+.Login {
+    width: 500px;
+    height: min-content;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.Login h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.Login form {
+    font-size: 20px;
+}
+
+.Login form .form-group {
+    margin-bottom: 12px;
+}
+
+.Login form .form-label {
+    color: black;
+    font-size: 20px;
+}
+
+.Login form input[type="submit"] {
+    font-size: 20px;
+    margin-top: 15px;
+}
+.Login form .form-check-label {
+    color: #497174;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+  .logo-container img {
+    margin-right: 10px;
+    width: 80px;
+    height: 80px;
+}
+  .text-orange {
+    color: #eb6440;
+}
