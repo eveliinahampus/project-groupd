@@ -7,15 +7,15 @@ dotenv.config();
 
 // Set up connection to the database
 const openDb = (): Pool => {
-    const pool: Pool = new Pool ({
-      user: process.env.DB_USER,
-      host: process.env.DB_HOST,
-      database: process.env.DB_DATABASE,
-      password: process.env.DB_PASSWORD,
-      port: Number(process.env.DB_PORT),
-      ssl: process.env.DB_SSL === 'true',
-    })
-    return pool
-  }
+  const pool: Pool = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT),
+    ssl: process.env.NODE_ENV === "production" ? true : false,
+  });
+  return pool;
+};
 
-  export default openDb
+export default openDb;
