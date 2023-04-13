@@ -25,7 +25,7 @@
 ### Compile TypeScript code:
 Run the following comand in the server directory:
    ```sh
-   mpx tcs
+   npx tcs
    ```
   
 ### Run the server locally
