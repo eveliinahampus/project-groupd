@@ -11,10 +11,11 @@ const app: Express = express();
 const port: number = 3001;
 
 // Set up middleware to be used by the app
-app.use(cors());
-app.use(express.json());
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+// app.use(cors());
+// app.use(express.json());
+// app.use(express.static("public"));
+// app.use(express.urlencoded({ extended: true }));
+app.use([cors(), express.json(), express.static("public"), express.urlencoded({ extended: true })]);
 
 // Tell the app to use the router module for all routes starting with "/"
 app.use("/", router);
