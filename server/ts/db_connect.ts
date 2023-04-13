@@ -13,7 +13,7 @@ const openDb = (): Pool => {
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
-    ssl: process.env.NODE_ENV === "production" ? true : false,
+    ssl: process.env.DB_SSL === "true",
   });
   return pool;
 };
