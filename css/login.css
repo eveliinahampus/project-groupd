@@ -77,7 +77,6 @@ header {
     transform-origin: left;
     transform: scaleX(1);
 }
-
 .navigation .btnLogin-popup {
     width: 130px;
     height: 50px;
@@ -109,14 +108,13 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;           /*only display one page (login/register)*/
-    transform: scale(0);    /*take away it, otherwise it close the window.*/
+    overflow: hidden;
+    transform: scale(0);
     transition: height .2s ease;
 }
 .wrapper.active-popup {
     transform: scale(1);
 }
-
 .wrapper.active{
     height: 520px;
 }
@@ -124,7 +122,6 @@ header {
     width: 100%;
     padding: 40px;
 }
-
 .wrapper .form-box.login {
     transition: transform .18s ease;
     transform: translateX(0);
@@ -134,14 +131,13 @@ header {
     transition: none;
     transform: translateX(-400px);
 }
-
 .wrapper .form-box.register {
     position: absolute;
     transition: height;
     transform: translateX(400px);
 }
 .wrapper.active .form-box.register {
-    transition: height .18s ease;   /*transform -> height*/
+    transition: height .18s ease;
     transform: translateX(0);
 }
 .wrapper .icon-close {
