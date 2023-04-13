@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+import loggerMiddleware from "./middleware/logger";
 import resController from "./controllers/resController";
 import revController from "./controllers/revController";
 import userController from "./controllers/userController";
@@ -6,6 +7,9 @@ import imgController from "./controllers/imgController";
 
 // Create a new router object
 const router: Router = express.Router();
+
+// Middleware logger for all routes
+router.use("/api", loggerMiddleware.logger)
 
 // Define routes for images
 router
