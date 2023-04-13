@@ -7,7 +7,7 @@
 
 1. First, clone the repo and cd into the project:
    ```sh
-   git clone https://github.com/doteins/todo.git
+   git clone https://github.com/t2haev00/project-groupd.git
    ```
    
 2. Move to the server directory:
