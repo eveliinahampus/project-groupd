@@ -19,8 +19,15 @@
    ```sh
    npm i
    ```
-4. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace variable placeholders with the correct values for your database.
    
+4. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace variable placeholders with the correct values for your database.
+
+### Compile TypeScript code:
+Run the following comand in the server directory:
+   ```sh
+   mpx tcs
+   ```
+  
 ### Run the server locally
 In the server directory, start the development server by running:
    ```sh
