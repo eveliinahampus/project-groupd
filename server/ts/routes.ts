@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import loggerMiddleware from "./middleware/logger";
+import authorizeMiddleware from "./middleware/authorize";
 import resController from "./controllers/resController";
 import revController from "./controllers/revController";
 import userController from "./controllers/userController";
@@ -9,7 +10,7 @@ import imgController from "./controllers/imgController";
 const router: Router = express.Router();
 
 // Middleware logger for all routes
-router.use("/api", loggerMiddleware.logger)
+//router.use("/api", [loggerMiddleware.logger, authorizeMiddleware.authorize])
 
 // Define routes for images
 router
@@ -35,13 +36,13 @@ router
   .put("/api/users/update/:id", userController.updateUser)
   .delete("/api/users/delete/:id", userController.deleteUser);
 
-// Define routes for reviews
+// Define routes for reviews (Basic CRUD operations first)
 router
   .get("/api/reviews", revController.getAllReviews)
   .post("/api/reviews", revController.createReview)
   .get("/api/reviews/:id", revController.getReviewById)
-  .get("/api/reviews/avg/:id", revController.getAverageStars)
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)
+  .get("/api/reviews/avg/:id", revController.getAverageStars)
 
 export default router;
