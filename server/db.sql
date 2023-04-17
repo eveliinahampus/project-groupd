@@ -14,8 +14,7 @@ CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   phone_number VARCHAR(100),
-  street_name VARCHAR(100) NOT NULL,
-  street_number VARCHAR(100) NOT NULL,
+  street_address VARCHAR(255) NOT NULL,
   city VARCHAR(100),
   zip_code VARCHAR(100),
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
