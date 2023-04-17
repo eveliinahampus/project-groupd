@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 
+:root{
+    --primary:#EB6440;
+    --dark:#497174;
+    --body:#d6e4e5;
+    --light:#eff5f5;
+    --box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+}
+
+body {
+    /*display: flex;
+    justify-content:center;
+    align-items: center;*/
+    min-height: 100vh;
+    background: url("../server/public/images/knife-fork1.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Sora', sans-serif;
+    line-height: 1.7;
+}
+
 .navbar .nav-link {
     font-family: 'Sora', sans-serif;
     color: #497174 !important;
@@ -29,15 +49,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    min-height: 100vh;
-    background: url("../server/public/images/knife-fork1.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
+
 
 header {
     position: fixed;
@@ -97,9 +109,8 @@ header {
 }
 
 .wrapper {
-    position: relative;
     width: 400px;
-    height: 440px;
+    /*height: 440px;*/
     background-color: rgba(251, 252, 252, 0.7);
     border: 2px solid rgba(255,255,255,.5);
     border-radius: 20px;
@@ -109,7 +120,7 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transform: scale(0);
+    transform: scale(1);
     transition: height .2s ease;
 }
 .wrapper.active-popup {
@@ -123,6 +134,7 @@ header {
     padding: 40px;
 }
 .wrapper .form-box.login {
+    height: 440px;
     transition: transform .18s ease;
     transform: translateX(0);
     /*display: none;*/
@@ -132,9 +144,8 @@ header {
     transform: translateX(-400px);
 }
 .wrapper .form-box.register {
-    position: absolute;
-    transition: height;
-    transform: translateX(400px);
+    margin-top: 30px;
+    height: 550px;
 }
 .wrapper.active .form-box.register {
     transition: height .18s ease;
@@ -156,6 +167,9 @@ header {
     cursor: pointer;
     z-index: 1;
     
+}
+.wrapper.active-popup .icon-close {
+    transform: scale(0);
 }
 
 .form-box h2 {
