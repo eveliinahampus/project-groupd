@@ -23,10 +23,10 @@ gallery
 const renderImage = (image_from_db) => {
   const imgDiv: HTMLDivElement = document.createElement("div");
   imgDiv.setAttribute("class", "col-lg-4 col-sm-6");
-
+  
   const cardDiv: HTMLDivElement = document.createElement("div");
   cardDiv.setAttribute("class", "service card-effect");
-
+  
   // const h4img: HTMLHeadElement = document.createElement('h4')
   // h4.innerHTML = image_from_db.title
   // div.append(h4)
@@ -34,10 +34,19 @@ const renderImage = (image_from_db) => {
   const image: HTMLImageElement = document.createElement("img");
   image.setAttribute("class", "restrantImage img-fluid");
   image.alt = `food1`;
-  image.src = `http://localhost:3001/images/${image_from_db.name}`;
+  image.src = `http://localhost:3001/images/${image_from_db.title}`;
   // image.src = `./server/public/img/${image_from_db.name}`
   //image.src = BACKEND_ROOT_URL + '/images/' + data.name
   cardDiv.appendChild(image);
   imgDiv.appendChild(cardDiv);
   images_div.appendChild(imgDiv);
 };
+
+const imgDiv: HTMLDivElement = document.createElement("div");
+  imgDiv.setAttribute("class", "col-lg-4 col-sm-6");
+  
+  const cardDiv: HTMLDivElement = document.createElement("div");
+  cardDiv.setAttribute("class", "service card-effect");
+
+  imgDiv.appendChild(cardDiv);
+  images_div.appendChild(imgDiv);
