@@ -34,7 +34,7 @@ const renderImage = (image_from_db) => {
   const image: HTMLImageElement = document.createElement("img");
   image.setAttribute("class", "restrantImage img-fluid");
   image.alt = `food1`;
-  image.src = `http://localhost:3001/images/${image_from_db.title}`;
+  image.src = `http://localhost:3001/images/${image_from_db.name}`;
   // image.src = `./server/public/img/${image_from_db.name}`
   //image.src = BACKEND_ROOT_URL + '/images/' + data.name
   cardDiv.appendChild(image);
