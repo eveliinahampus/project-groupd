@@ -37,7 +37,7 @@ const getAverageStars = (req: Request, res: Response) => {
   let id = parseInt(req.params.id);
 
   pool.query(
-    "select avg(stars)::numeric(10,2) from reviews where restaurant_id = $1",
+    "select avg(stars)::numeric(10,1) from reviews where restaurant_id = $1",
     [id],
     (err: Error, result: QueryResult) => {
       if (err) {
