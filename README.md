@@ -22,7 +22,8 @@ A social media app for reviewing restaurants. Users can register, login and add 
 ## Development Setup
 
 ### Prerequisites
-- Node.js
+- Node.js ^16
+- Database (PostgreSQL, MySQL, SQLite...)
 
 ### Local setup (Linux & Windows)
 
@@ -43,8 +44,8 @@ A social media app for reviewing restaurants. Users can register, login and add 
    
 4. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace variable placeholders with the correct values for your database.
 
-### Compile TypeScript code for the server
-Run the following comand in the server directory:
+### Compile TypeScript code for the server and front-end
+Run the following comand in the server and root directory:
    ```sh
    npx tcs
    ```
@@ -54,10 +55,5 @@ In the server directory, start the development server by running:
    ```sh
    npm run devStart
    ```
-Backend will be running on **http://localhost:3001**.
+Backend will be running on **http://localhost:3001** by default, if no value for PORT is passed.
 
-### Compile code for front-end
-Run tsc from the project’s root directory:
-   ```sh
-   npx tcs
-   ```
