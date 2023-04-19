@@ -3,12 +3,15 @@ import express, { Express, Request, Response } from "express";
 import cors from "cors";
 // Import the router module
 import router from "./routes";
+import dotenv from "dotenv";
+// Load environment variables from .env file
+dotenv.config();
 
 // Start new instance of express
 const app: Express = express();
 
-// Port number declaration
-const port: number = 3001;
+// // Port number declaration
+const port = process.env.PORT || 3001;
 
 // Set up middleware to be used by the app
 // app.use(cors());
