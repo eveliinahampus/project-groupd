@@ -7,7 +7,8 @@ CREATE DATABASE restaurant_reviews_db;
 CREATE TABLE images (
   id  serial primary key,
   title varchar(255) NOT NULL,
-  name varchar(255) NOT NULL
+  name varchar(255) NOT NULL,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE restaurants (
@@ -33,7 +34,8 @@ CREATE TABLE reviews (
   title VARCHAR(100) NOT NULL,
   body TEXT NOT NULL,
   stars INT NOT NULL CHECK (stars >= 1 AND stars <= 5),
-  restaurant_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  restaurant_id INT NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  images_id INT NOT NULL REFERENCES images(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
