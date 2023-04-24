@@ -40,15 +40,15 @@ const renderImage = (image_from_db) => {
   recommendationDiv.appendChild(recommendationCount);
   iconsDiv.appendChild(recommendationDiv);
 
-  const favoriteDiv = document.createElement("div");
-  favoriteDiv.classList.add("favorite");
-  const favoriteIcon = document.createElement("i");
-  favoriteIcon.classList.add("bi", "bi-suit-heart-fill");
-  const favoriteCount = document.createElement("p");
-  favoriteCount.textContent = "100";
-  favoriteDiv.appendChild(favoriteIcon);
-  favoriteDiv.appendChild(favoriteCount);
-  iconsDiv.appendChild(favoriteDiv);
+  // const favoriteDiv = document.createElement("div");
+  // favoriteDiv.classList.add("favorite");
+  // const favoriteIcon = document.createElement("i");
+  // favoriteIcon.classList.add("bi", "bi-suit-heart-fill");
+  // const favoriteCount = document.createElement("p");
+  // favoriteCount.textContent = "100";
+  // favoriteDiv.appendChild(favoriteIcon);
+  // favoriteDiv.appendChild(favoriteCount);
+  // iconsDiv.appendChild(favoriteDiv);
 
   const starsDiv = document.createElement("div");
   starsDiv.classList.add("stars");
