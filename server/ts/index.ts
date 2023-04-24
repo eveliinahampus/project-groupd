@@ -1,7 +1,6 @@
 // Import modules and interface required by the app
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import cors from "cors";
-// Import the router module
 import router from "./routes";
 import dotenv from "dotenv";
 // Load environment variables from .env file
@@ -22,9 +21,6 @@ app.use([cors(), express.json(), express.static("public"), express.urlencoded({ 
 
 // Tell the app to use the router module for all routes starting with "/"
 app.use("/", router);
-app.use("*", (req: Request, res: Response) => {
-  res.status(404).send("<h2> Sorry, the requested resource was not found.</h2>")
-})
 
 // Start the server
 app.listen(port, () => {
