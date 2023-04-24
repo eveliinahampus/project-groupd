@@ -13,16 +13,16 @@ A social media app for reviewing restaurants. Users can register, login and add 
 
 ### Technologies and Programming Languages Used
 - Node.js
+- Express
 - Typescript
 - HTML
 - CSS
 - SQL
 
-
 ## Development Setup
 
 ### Prerequisites
-- Node.js ^16
+- Node.js
 - Database (PostgreSQL, MySQL, SQLite...)
 
 ### Local setup (Linux & Windows)
