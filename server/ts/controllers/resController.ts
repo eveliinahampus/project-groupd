@@ -22,12 +22,13 @@ const getAllRestaurants = (req: Request, res: Response) => {
 // Retrieves restaurant by given id
 const getRestaurantById = (req: Request, res: Response) => {
   // Connect to the database
+  const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
   let pool = openDb();
   let id = parseInt(req.params.id);
 
   // Query the database to retrieve all the restaurants
   pool.query(
-    "select * from restaurants where id = $1",
+    sql,
     [id],
     (err: Error, result: QueryResult) => {
       if (err) {
