@@ -16,14 +16,14 @@ A social media app for reviewing restaurants. Users can register, login and add 
 - Express
 - Typescript
 - HTML
-- CSS
+- CSS (Bootstrap)
 - SQL
 
 ## Development Setup
 
 ### Prerequisites
 - Node.js
-- Database (PostgreSQL, MySQL, SQLite...)
+- PostgreSQL: You can find the database schema in the server folder.
 
 ### Local setup (Linux & Windows)
 
