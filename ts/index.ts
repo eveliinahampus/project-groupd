@@ -4,7 +4,7 @@ import { Image } from "./class/Image.js";
 const BACKEND_ROOT_URL = "http://localhost:3001/api/images";
 
 const images_div: HTMLDivElement = <HTMLDivElement>(
-  document.querySelector(".row.g-4")
+  document.querySelector("#recommendations-container")
 );
 
 const gallery: Gallery = new Gallery(BACKEND_ROOT_URL);
