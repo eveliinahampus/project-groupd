@@ -5,6 +5,7 @@ import resController from "./controllers/resController";
 import revController from "./controllers/revController";
 import userController from "./controllers/userController";
 import imgController from "./controllers/imgController";
+import notFoundController from "./controllers/notFoundController"; 
 
 // Create a new router object
 const router: Router = express.Router();
@@ -44,5 +45,8 @@ router
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)
   .get("/api/reviews/avg/:id", revController.getAverageStars)
+
+// Define route for error 404 (resource not found)
+router.use("*", notFoundController.handle404Error)
 
 export default router;
