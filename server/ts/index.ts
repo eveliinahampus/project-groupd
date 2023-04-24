@@ -1,7 +1,6 @@
 // Import modules and interface required by the app
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-// Import the router module
 import router from "./routes";
 import dotenv from "dotenv";
 // Load environment variables from .env file
