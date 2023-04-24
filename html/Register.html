@@ -63,23 +63,23 @@
         <span class="icon-close"><ion-icon name="close"></ion-icon></span>
         <div class="form-box register">
           <h2>Join Us!</h2>
-          <form action="#">
+          <form action="#" id ="">
             <div class="input-box">
               <span class="icon"><ion-icon name="person"></ion-icon></span>
-              <input type="text" placeholder="Username" required>
+              <input type="text" id="username" placeholder="Username" required>
             </div>
             <div class="input-box">
               <span class="icon"><ion-icon name="mail"></ion-icon></span>
-              <input type="email" placeholder="Email" required>
+              <input type="email" id="email" placeholder="Email" required>
             </div>
             <div class="input-box">
               <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-              <input type="password" placeholder="Password" required>
+              <input type="password" id="password" placeholder="Password" required>
             </div>
             <div class="remember-forgot">
               <label><input type="checkbox">I agree to the terms and conditions</label>
             </div>
-            <button type="submit" class="btn btn-success w-100">SIGN UP</button>
+            <button type="submit" id="submit" class="btn btn-success w-100">SIGN UP</button>
             <div class="login-register">
               <p>Already have an account? <a href="Login.html" class="login-register">Login</a></p>
                 </div>
@@ -95,5 +95,9 @@
   
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  
+  <script src="../js/sessionStrage.js"></script>
+
+
 </body>
 </html>
