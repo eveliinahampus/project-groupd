@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import openDb from "../db_connect";
 import { QueryResult } from "pg";
 
-const getAllImages = (req: Request, res: Response) => {
+const getAllImages = async (req: Request, res: Response) => {
   let pool = openDb();
 
   pool.query("select * from images", (err: Error, result: QueryResult) => {
@@ -16,7 +16,7 @@ const getAllImages = (req: Request, res: Response) => {
 };
 
 // Retrieves image by given id
-const getImageById = (req: Request, res: Response) => {
+const getImageById = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
@@ -33,12 +33,12 @@ const getImageById = (req: Request, res: Response) => {
   );
 };
 
-const createImage = (req: Request, res: Response) => {
+const createImage = async (req: Request, res: Response) => {
   let pool = openDb();
   let { name, title } = req.body;
 
   pool.query(
-    "insert into images (title, name) values ($1, $2) returning *",
+    "insert into images (img_title, img_name) values ($1, $2) returning *",
     [name, title],
     (err: Error, result: QueryResult) => {
       if (err) {
@@ -50,14 +50,14 @@ const createImage = (req: Request, res: Response) => {
   );
 };
 
-const updateImage = (req: Request, res: Response) => {
+const updateImage = async (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
   let { name, title } = req.body;
 
   pool.query(
-    "update images set name = $1 and set title= $2 where id= $3 returning *",
+    "update images set img_name = $1 and set img_title= $2 where id= $3 returning *",
     [name, title, id],
     (err: Error, result: QueryResult) => {
       if (err) {

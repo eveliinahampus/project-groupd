@@ -1,12 +1,14 @@
 class Image {
   id: number
-  titel: string
-  name: string
+  img_titel: string
+  img_name: string
+  user_id: number
 
-  constructor(id: number,title:string,name:string) {
+  constructor(id:number ,title:string ,name:string, user_id:number) {
     this.id = id
-    this.titel = title
-    this.name = name
+    this.img_titel = title
+    this.img_name = name
+    this.user_id = user_id
   }
 }
 

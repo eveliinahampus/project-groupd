@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import openDb from "../db_connect";
 import { QueryResult } from "pg";
 
-const getAllReviews = (req: Request, res: Response) => {
+const getAllReviews = async (req: Request, res: Response) => {
   let pool = openDb();
 
   pool.query("select * from reviews", (err: Error, result: QueryResult) => {
@@ -15,7 +15,7 @@ const getAllReviews = (req: Request, res: Response) => {
 };
 
 // Retrieves review by given id
-const getReviewById = (req: Request, res: Response) => {
+const getReviewById = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
@@ -32,7 +32,7 @@ const getReviewById = (req: Request, res: Response) => {
   );
 };
 
-const getAverageStars = (req: Request, res: Response) => {
+const getAverageStars = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
@@ -49,7 +49,7 @@ const getAverageStars = (req: Request, res: Response) => {
   );
 };
 
-const createReview = (req: Request, res: Response) => {
+const createReview = async (req: Request, res: Response) => {
   let pool = openDb();
   let title = req.body.titel
   let body = req.body.body
@@ -58,7 +58,7 @@ const createReview = (req: Request, res: Response) => {
   let parsedUser_id = parseInt(req.body.user_id);
 
   pool.query(
-    "insert into reviews (title,body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
+    "insert into reviews (review_title,review_body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
     [title, body, parsedStars, parsedRestaurant_id, parsedUser_id],
     (err: Error, result: QueryResult) => {
       if (err) {
@@ -70,7 +70,7 @@ const createReview = (req: Request, res: Response) => {
   );
 };
 
-const updateReview = (req: Request, res: Response) => {
+const updateReview = async (req: Request, res: Response) => {
   let pool = openDb();
   let title = req.body.titel
   let body = req.body.body
@@ -79,7 +79,7 @@ const updateReview = (req: Request, res: Response) => {
   let parsedStars = parseInt(req.body.stars);
 
   pool.query(
-    "update reviews set title = $1, body = $2, stars = $3 where user_id = $4 and restaurant_id = %5 returning *",
+    "update reviews set review_title = $1, review_body = $2, stars = $3 where user_id = $4 and restaurant_id = %5 returning *",
     [title, body, parsedStars, userId, restaurantId],
     (err: Error, result: QueryResult) => {
       if (err) {

@@ -3,7 +3,7 @@ import openDb from "../db_connect";
 import { QueryResult } from "pg";
 
 // Retrieves all the restaurants in the database
-const getAllRestaurants = (req: Request, res: Response) => {
+const getAllRestaurants = async (req: Request, res: Response) => {
   // Connect to the database
   let pool = openDb();
 
@@ -20,7 +20,7 @@ const getAllRestaurants = (req: Request, res: Response) => {
 };
 
 // Retrieves restaurant by given id
-const getRestaurantById = (req: Request, res: Response) => {
+const getRestaurantById = async (req: Request, res: Response) => {
   // Connect to the database
   const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
   let pool = openDb();
@@ -43,13 +43,13 @@ const getRestaurantById = (req: Request, res: Response) => {
 };
 
 // Adds a new restaurant to the database
-const createRestaurant = (req: Request, res: Response) => {
+const createRestaurant = async (req: Request, res: Response) => {
   let pool = openDb();
   let { name, phone_number, street_address, city, zip_code } =
     req.body;
 
   pool.query(
-    "insert into restaurants (name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *",
+    "insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *",
     [name, phone_number, street_address, city, zip_code],
     (err: Error, result: QueryResult) => {
       if (err) {
@@ -62,14 +62,14 @@ const createRestaurant = (req: Request, res: Response) => {
 };
 
 // Update an existing restaurant's infomation in the database
-const updateRestaurant = (req: Request, res: Response) => {
+const updateRestaurant = async (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);
   let { name,phone_number,street_address,city,zip_code } = req.body;
 
   pool.query(
-    "update restaurants set name = $1, phone_number = $2, street_address = $3, city = $4, zip_code = $5 where id= $2 returning *",
+    "update restaurants set restaurant_name = $1, phone_number = $2, street_address = $3, city = $4, zip_code = $5 where id= $2 returning *",
     [name,phone_number,street_address,city,zip_code,id],
     (err: Error, result: QueryResult) => {
       if (err) {
