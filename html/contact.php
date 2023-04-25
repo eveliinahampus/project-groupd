@@ -1,4 +1,5 @@
 <!-- Template https://paperform.co/blog/html-contact-form/ -->
+<!-- PHP file is hosted at https://groupd-contactform.000webhostapp.com/groupd/contact.php in order to work -->
 
 <?php
 if (isset($_POST['Email'])) {
@@ -22,7 +23,7 @@ if (isset($_POST['Email'])) {
         !isset($_POST['Email']) ||
         !isset($_POST['Message'])
     ) {
-        problem('We're sorry, but there appears to be a problem with the form you submitted.');
+        problem('We\'re sorry, but there appears to be a problem with the form you submitted.');
     }
     $name = $_POST['Name']; // required
     $email = $_POST['Email']; // required
