@@ -13,6 +13,7 @@ A social media app for reviewing restaurants. Users can register, login and add 
 
 ### Technologies and Programming Languages Used
 - Node.js
+- Git
 - Express
 - Typescript
 - HTML
