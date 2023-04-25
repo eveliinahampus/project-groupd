@@ -18,9 +18,13 @@ const getAllUsers = async (req: Request, res: Response) => {
 const getUserById = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
+  //const sql = "SELECT r.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
+
+  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.user_id = u.id) AS reviews FROM users u WHERE u.id = $1;"
+
 
   pool.query(
-    "select * from users where id = $1",
+    sql,
     [id],
     (err: Error, result: QueryResult) => {
       if (err) {
