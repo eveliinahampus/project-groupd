@@ -1,11 +1,12 @@
 import express, { Router } from "express";
 import loggerMiddleware from "./middleware/logger";
-import authorizeMiddleware from "./middleware/authorize";
+import authenticate from "./middleware/authenticate";
 import resController from "./controllers/resController";
 import revController from "./controllers/revController";
 import userController from "./controllers/userController";
 import imgController from "./controllers/imgController";
-import notFoundController from "./controllers/notFoundController"; 
+import notFoundController from "./controllers/notFoundController";
+import loginController from "./controllers/loginController"
 
 // Create a new router object
 const router: Router = express.Router();
@@ -44,9 +45,15 @@ router
   .get("/api/reviews/:id", revController.getReviewById)
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)
-  .get("/api/reviews/avg/:id", revController.getAverageStars)
+  .get("/api/reviews/avg/:id", revController.getAverageStars);
+
+// Define login route
+router.post("/login", loginController.login);
+
+// Logout route
+router.post("/logout", authenticate.verifyToken, loginController.logout);
 
 // Define route for error 404 (resource not found)
-router.use("*", notFoundController.handle404Error)
+router.use("*", notFoundController.handle404Error);
 
 export default router;
