@@ -18,6 +18,7 @@ A social media app for reviewing restaurants. Users can register, login and add 
 - HTML
 - CSS (Bootstrap)
 - SQL
+- PHP
 
 ## Development Setup
 
