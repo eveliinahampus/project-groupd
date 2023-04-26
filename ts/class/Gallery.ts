@@ -32,8 +32,9 @@ class Gallery {
     imagesAsJson.forEach((element) => {
       const gallery_image: Image = new Image(
         element.id,
-        element.title,
-        element.name
+        element.img_title,
+        element.img_name,
+        element.user_id
       );
       this.images.push(gallery_image);
     });

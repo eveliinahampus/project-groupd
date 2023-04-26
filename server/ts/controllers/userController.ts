@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import openDb from "../db_connect";
 import { QueryResult } from "pg";
 
-const getAllUsers = (req: Request, res: Response) => {
+const getAllUsers = async (req: Request, res: Response) => {
   let pool = openDb();
 
   pool.query("select * from users", (err: Error, result: QueryResult) => {
@@ -15,12 +15,15 @@ const getAllUsers = (req: Request, res: Response) => {
 };
 
 // Retrieves User by given id
-const getUserById = (req: Request, res: Response) => {
+const getUserById = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
+  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.user_id = u.id) AS reviews FROM users u WHERE u.id = $1;"
+
+
   pool.query(
-    "select * from users where id = $1",
+    sql,
     [id],
     (err: Error, result: QueryResult) => {
       if (err) {
@@ -32,7 +35,7 @@ const getUserById = (req: Request, res: Response) => {
   );
 };
 
-const createUser = (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response) => {
   let pool = openDb();
   let { username, email, password } = req.body;
 
@@ -49,7 +52,7 @@ const createUser = (req: Request, res: Response) => {
   );
 };
 
-const updateUser = (req: Request, res: Response) => {
+const updateUser = async (req: Request, res: Response) => {
   let pool = openDb();
 
   let id = parseInt(req.params.id);

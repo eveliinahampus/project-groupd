@@ -40,6 +40,7 @@ const renderImage = (image_from_db) => {
   recommendationDiv.appendChild(recommendationCount);
   iconsDiv.appendChild(recommendationDiv);
 
+  // Displays the hearts
   // const favoriteDiv = document.createElement("div");
   // favoriteDiv.classList.add("favorite");
   // const favoriteIcon = document.createElement("i");
@@ -69,7 +70,7 @@ const renderImage = (image_from_db) => {
 
   const restaurantImage = document.createElement("img");
   restaurantImage.setAttribute("class", "restaurantImage img-fluid")
-  restaurantImage.src = `http://localhost:3001/images/${image_from_db.name}`;
+  restaurantImage.src = `http://localhost:3001/images/${image_from_db.img_name}`;
   restaurantImage.alt = "food1";
   serviceDiv.appendChild(restaurantImage);
 
