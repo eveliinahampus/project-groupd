@@ -28,10 +28,23 @@ if (document.getElementById("submit")) {
 
 }
 else{
-
+//navbar login user
 console.log("---------",sessionStorage.getItem("username"));
 if (sessionStorage.getItem("username")) {
   document.getElementById("login-user").innerHTML = sessionStorage.getItem("username");
 }
+//review page
+if (sessionStorage.getItem("username")) {
+  document.getElementById("userNameReview").innerHTML = sessionStorage.getItem("username");
+}
+
+if (sessionStorage.getItem("username")) {
+  document.getElementById("userEmailReview").innerHTML = sessionStorage.getItem("email");
+}
+
+
+
+
+
 }
 
