@@ -32,9 +32,9 @@ router
 
 // Define routes for users
 router
-  .get("/api/users", authenticate.verifyToken, userController.getAllUsers)
+  .get("/api/users", userController.getAllUsers)
   .post("/api/users", userController.createUser)
-  .get("/api/users/:id", authenticate.verifyToken, userController.getUserById)
+  .get("/api/users/:id", userController.getUserById)
   .put("/api/users/update/:id", userController.updateUser)
   .delete("/api/users/delete/:id", userController.deleteUser);
 
@@ -45,7 +45,6 @@ router
   .get("/api/reviews/:id", revController.getReviewById)
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)
-  .get("/api/reviews/avg/:id", revController.getAverageStars);
 
 // Define login route
 router.post("/api/login", loginController.login);
