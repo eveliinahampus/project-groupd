@@ -1,17 +1,16 @@
 import { Request, Response, NextFunction } from "express";
-import { sign, verify, Secret } from "jsonwebtoken";
+import { sign, verify } from "jsonwebtoken";
 import dotenv from "dotenv"
-import path from "path";
 
-dotenv.config({ path: path.join(__dirname, ".../.env") })
-const secret = process.env.SECRET_JWT_KEY?.trim()
+dotenv.config()
+const secret = process.env.SECRET_JWT_KEY!
 
 // Function to generate a JWT token
 const createToken = (username:string) => {
   // Define a secret key to sign the JWT token
   
   // Generate JWT with jsonwebtoken.sign method
-  const token = sign({ username }, secret!, {expiresIn: "1d"})
+  const token = sign({ username: username }, secret, {expiresIn: "1d"})
   // return the token
   return token
 }
@@ -21,11 +20,11 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token
 
   if (!token) {
-    return res.status(401).send({ message: "Acces denied!"})
+    res.status(401).send({ message: "Acces denied!"})
   }
 
   try {
-    const validToken = verify(token, secret!);
+    const validToken = verify(token, secret);
     console.log(validToken); // { userId: 123, iat: 1653047143 }
     next()
   } catch (err) {
