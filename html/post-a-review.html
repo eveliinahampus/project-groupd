@@ -68,26 +68,29 @@
               </p>
             </div>
   
-            <form action="" class="row g-3 justify-content-center">
+            <form method="POST" action="http://localhost:3001/api/reviews" class="row g-3 justify-content-center">
               <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="Name" id="userNameReview">
+                <input type="text" class="form-control" name="username" placeholder="Name" id="userNameReview">
               </div>
               <div class="col-md-5">
-                <input type="email" class="form-control" placeholder="Email" id="userEmailReview">
+                <input type="email" class="form-control" name="email" placeholder="Email" id="userEmailReview">
               </div>
               <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="How many stars ★★★✩✩">
+                <input type="number" class="form-control" name="stars" min="1" max="5" step="1" placeholder="Stars ★★★✩✩">
               </div>
               <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Restaruant">
+                <input type="number" class="form-control" name="restaurant_id" min="1" max="10" placeholder="Restaruant Nr">
               </div>
               <div class="col-md-10">
-                <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Enter Comments"></textarea>
+                <input type="text" class="form-control" name="review_title" placeholder="Title">
+              </div>
+              <div class="col-md-10">
+                <textarea id="" cols="30" rows="5" class="form-control" name="review_body" placeholder="Your review..."></textarea>
               </div>
               <div class="col-md-10">
                 <input class="form-control" type="file" id="formFile">
                 <label for="file">reading file</label>
-                <p class="help-block">help help help</p>
+                <p class="help-block">...</p>
               </div>
               <div class="col-md-10 d-grid">
                 <button class="btn btn-success">Post</button>
