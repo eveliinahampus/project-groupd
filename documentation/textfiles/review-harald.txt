@@ -1,0 +1,4 @@
+  restaurant_name = "Harald Oulu"
+  phone_number = "+358 44 766 8000"
+  street_address = "Kirkkokatu 16"
+  city = "Oulu"
