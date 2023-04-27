@@ -1,18 +1,16 @@
-// Get the email input element
+
 //check if there is submitt botton
 if (document.getElementById("submit")) {
   const emailInput = document.getElementById("email")as HTMLInputElement;
-  // When the submit button is clicked, save the email to sessionStorage
 
-  //
+  // When the submit button is clicked, save the email to sessionStorage
   document.getElementById("submit").addEventListener("click", function (event) {
       event.preventDefault();
       const email = emailInput.value;
-      sessionStorage.setItem("email", email); // keep to the sessionStorage
-      // 他の処理を追加する
+      // keep to the sessionStorage
+      sessionStorage.setItem("email", email); 
       console.log(sessionStorage.getItem("email"));
   });
-  console.log(sessionStorage.getItem("email"));
 
 
   // Get the username input element
@@ -21,30 +19,16 @@ if (document.getElementById("submit")) {
   document.getElementById("submit").addEventListener("click", function (event) {
       event.preventDefault();
       const username = usernameInput.value;
-      sessionStorage.setItem("username", username); // keep to the sessionStorage
-      // 他の処理を追加する
+      // keep to the sessionStorage
+      sessionStorage.setItem("username", username); 
       console.log(sessionStorage.getItem("username"));
   });
-
 }
 else{
 //navbar login user
 console.log("---------",sessionStorage.getItem("username"));
-if (sessionStorage.getItem("username")) {
-  document.getElementById("login-user").innerHTML = sessionStorage.getItem("username");
-}
-//review page
-if (sessionStorage.getItem("username")) {
-  document.getElementById("userNameReview").innerHTML = sessionStorage.getItem("username");
-}
-
-if (sessionStorage.getItem("username")) {
-  document.getElementById("userEmailReview").innerHTML = sessionStorage.getItem("email");
-}
-
-
-
-
-
+  if (sessionStorage.getItem("username")) {
+    document.getElementById("login-user").innerHTML = sessionStorage.getItem("username");
+  }
 }
 
