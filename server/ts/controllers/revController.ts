@@ -32,34 +32,19 @@ const getReviewById = async (req: Request, res: Response) => {
   );
 };
 
-const getAverageStars = async (req: Request, res: Response) => {
-  let pool = openDb();
-  let id = parseInt(req.params.id);
-
-  pool.query(
-    "select avg(stars)::numeric(10,1) from reviews where restaurant_id = $1",
-    [id],
-    (err: Error, result: QueryResult) => {
-      if (err) {
-        res.status(500).json({ err: err.message });
-        return;
-      }
-      res.status(200).json(result.rows);
-    }
-  );
-};
-
 const createReview = async (req: Request, res: Response) => {
   let pool = openDb();
-  let title = req.body.titel
-  let body = req.body.body
+
+  let title = req.body.review_title
+  let body = req.body.review_body
   let parsedStars = parseInt(req.body.stars);
   let parsedRestaurant_id = parseInt(req.body.restaurant_id);
-  let parsedUser_id = parseInt(req.body.user_id);
-
+  let parsedUsername = req.body.username;
+  const sql = "insert into reviews (review_title,review_body,stars,restaurant_id,username) values ($1,$2,$3,$4,$5) returning *"
+  
   pool.query(
-    "insert into reviews (review_title,review_body,stars,restaurant_id,user_id) values ($1,$2,$3,$4.$5) returning *",
-    [title, body, parsedStars, parsedRestaurant_id, parsedUser_id],
+    sql,
+    [title, body, parsedStars, parsedRestaurant_id, parsedUsername],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -72,15 +57,16 @@ const createReview = async (req: Request, res: Response) => {
 
 const updateReview = async (req: Request, res: Response) => {
   let pool = openDb();
-  let title = req.body.titel
-  let body = req.body.body
-  let userId = parseInt(req.params.userId)
-  let restaurantId = parseInt(req.params.restaurantId)
+
+  let title = req.body.review_title
+  let body = req.body.review_body
   let parsedStars = parseInt(req.body.stars);
+  let parsedRestaurant_id = parseInt(req.body.restaurant_id);
+  let parsedUsername = req.body.username;
 
   pool.query(
-    "update reviews set review_title = $1, review_body = $2, stars = $3 where user_id = $4 and restaurant_id = %5 returning *",
-    [title, body, parsedStars, userId, restaurantId],
+    "update reviews set review_title = $1, review_body = $2, stars = $3, restaurant_id = $4, username = $5 where username = $5 and restaurant_id = $4 returning *",
+    [title, body, parsedStars, parsedRestaurant_id, parsedUsername],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });
@@ -111,7 +97,6 @@ const deleteReview = async (req: Request, res: Response) => {
 export default {
   getAllReviews,
   getReviewById,
-  getAverageStars,
   createReview,
   updateReview,
   deleteReview,
