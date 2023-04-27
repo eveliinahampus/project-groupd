@@ -19,7 +19,7 @@ const getUserById = async (req: Request, res: Response) => {
   let pool = openDb();
   let id = parseInt(req.params.id);
 
-  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.user_id = u.id) AS reviews FROM users u WHERE u.id = $1;"
+  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u WHERE u.id = $1;"
 
 
   pool.query(
