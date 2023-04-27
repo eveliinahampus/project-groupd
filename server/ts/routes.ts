@@ -32,9 +32,9 @@ router
 
 // Define routes for users
 router
-  .get("/api/users", userController.getAllUsers)
+  .get("/api/users", authenticate.verifyToken, userController.getAllUsers)
   .post("/api/users", userController.createUser)
-  .get("/api/users/:id", userController.getUserById)
+  .get("/api/users/:id", authenticate.verifyToken, userController.getUserById)
   .put("/api/users/update/:id", userController.updateUser)
   .delete("/api/users/delete/:id", userController.deleteUser);
 
@@ -48,10 +48,10 @@ router
   .get("/api/reviews/avg/:id", revController.getAverageStars);
 
 // Define login route
-router.post("/login", loginController.login);
+router.post("/api/login", loginController.login);
 
-// Logout route
-router.post("/logout", authenticate.verifyToken, loginController.logout);
+// Logout route - NOT IMPLEMENTED YET
+router.post("/api/logout", authenticate.verifyToken, loginController.logout);
 
 // Define route for error 404 (resource not found)
 router.use("*", notFoundController.handle404Error);
