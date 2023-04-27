@@ -1,0 +1,4 @@
+  restaurant_name = "Da Max"
+  phone_number = "+358 8 378486"
+  street_address = "Kauppurienkatu 5"
+  city = "Oulu"

@@ -1,0 +1,4 @@
+  restaurant_name = "Itsudemo Sushi"
+  phone_number = "+358 50 406 6924"
+  street_address = "Uusikatu 26"
+  city = "Oulu"

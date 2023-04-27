@@ -1,0 +1,4 @@
+  restaurant_name = "Rocker Burger Diner"
+  phone_number = "+358 45 2639996"
+  street_address = "Kaplastie 2"
+  city = "Oulu"

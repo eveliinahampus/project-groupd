@@ -1,0 +1,4 @@
+  restaurant_name = "Noodle Bar 9"
+  phone_number = "+358 8 4152 9999 "
+  street_address = "Merikoskenkatu 9"
+  city = "Oulu"

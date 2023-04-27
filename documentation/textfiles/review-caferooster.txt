@@ -1,0 +1,4 @@
+  restaurant_name = "Cafe Rooster"
+  phone_number = "+358 20 711 8280"
+  street_address = "Torikatu 26"
+  city = "Oulu"
