@@ -8,9 +8,9 @@ class Restaurant_Collection {
     this.#backend_url = url;
   }
 
-  getRestuarants = async () => {
+  getRestaurants = async () => {
     return new Promise(async (resolve, reject) => {
-      fetch(this.#backend_url)
+      fetch(`${this.#backend_url}`)
         .then((response) => {
           if (response.ok) {
             return response.json();

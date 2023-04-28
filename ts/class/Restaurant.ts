@@ -5,8 +5,6 @@ class Restaurant {
   street_address: string
   city: string
   zip_code: string
-  restaurants: Array<Restaurant> = [];
-
 
   constructor( id:number, name:string, phone_number:string, street_address:string, city:string, zip_code:string) {
     this.id = id

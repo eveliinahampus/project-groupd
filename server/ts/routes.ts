@@ -26,7 +26,7 @@ router
 router
   .get("/api/restaurants", resController.getAllRestaurants)
   .post("/api/restaurants", resController.createRestaurant)
-  .get("/api/restaurants/:id", resController.getRestaurantById)
+  // .get("/api/restaurants/:id", resController.getRestaurantById)
   .put("/api/restaurants/update/name/:id", resController.updateRestaurant)
   .delete("/api/restaurants/delete/:id", resController.deleteRestaurant);
 

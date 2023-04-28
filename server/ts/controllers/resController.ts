@@ -7,8 +7,12 @@ const getAllRestaurants = async (req: Request, res: Response) => {
   // Connect to the database
   let pool = openDb();
 
+  // const sql = "select * from restaurants"
+  const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r;"
+
+
   // Query the database to retrieve all the restaurants
-  pool.query("select * from restaurants", (err: Error, result: QueryResult) => {
+  pool.query(sql, (err: Error, result: QueryResult) => {
     if (err) {
       // Handle errors and return an error response
       res.status(500).json({ err: err.message });
@@ -19,7 +23,7 @@ const getAllRestaurants = async (req: Request, res: Response) => {
   });
 };
 
-// Retrieves restaurant by given id
+/* // Retrieves restaurant by given id
 const getRestaurantById = async (req: Request, res: Response) => {
   // Connect to the database
   const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
@@ -41,6 +45,7 @@ const getRestaurantById = async (req: Request, res: Response) => {
     }
   );
 };
+*/
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
@@ -102,7 +107,7 @@ const deleteRestaurant = async (req: Request, res: Response) => {
 // Export all the functions as an object to be imported by other modules
 export default {
   getAllRestaurants,
-  getRestaurantById,
+  // getRestaurantById,
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,
