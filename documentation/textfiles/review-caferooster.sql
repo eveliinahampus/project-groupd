@@ -2,11 +2,12 @@ INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city
 VALUES ( 'restaurant1', 'Cafe Rooster', '+358 20 711 8280', 'Torikatu 26', 'Oulu', '90100');
 
 INSERT INTO reviews (id, review_title, review_body, stars, restaurant_id, user_id, images_id)
-VALUES ( 'review1', 'title' , 'body' , '5' ,  'restaurant1', 'user', 'images');
+VALUES ( 
+    'review1', 
+    'A cozy place to spend time with loved ones' ,
+    'Cafe Rooster is a modern cafe in the heart of Oulu. I would recommend this cafe to anyone who is looking for a nice place to have a cup of coffee and a piece of cake. It is also a proper restaurant, serving burgers and such, and it can also be used as a bar. These areas are divided, bathrooms and bar used to be basement level, and other parts in street level. Entire interior was renovated during COVID19 restaurant lockdown, but it managed to keep some of its original old-fashioned cafe style that many, including me, admired greatly. 
 
-
-"
-Cafe Rooster is a modern cafe in the heart of Oulu. I would recommend this cafe to anyone who is looking for a nice place to have a cup of coffee and a piece of cake. It is also a proper restaurant, serving burgers and such, and it can also be used as a bar. These areas are divided, bathrooms and bar used to be basement level, and other parts in street level. Entire interior was renovated during COVID19 restaurant lockdown, but it managed to keep some of its original old-fashioned cafe style that many, including me, admired greatly. 
-
-It is very comfortable and relaxing environment to catch a cup of coffee or have a fancy burger meal. All food that I have tasted there has been delicious and top notch. It also allows small kids to have their first restaurant experience, offering great experience to entire family. You can come by or book a table for your group beforehand. Sometimes, they also offer brunches for special occasions, like Mothers or Father’s Day. I have been there many times, and I will most certainly go there again. 
-"
+    It is very comfortable and relaxing environment to catch a cup of coffee or have a fancy burger meal. All food that I have tasted there has been delicious and top notch. It also allows small kids to have their first restaurant experience, offering great experience to entire family. You can come by or book a table for your group beforehand. Sometimes, they also offer brunches for special occasions, like Mothers or Father’s Day. I have been there many times, and I will most certainly go there again. ' ,
+    '5' ,  
+    'restaurant1', 
+    );
