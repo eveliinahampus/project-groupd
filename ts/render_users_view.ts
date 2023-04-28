@@ -3,9 +3,9 @@ import { User } from "./class/User.js";
 
 const BACKEND_ROOT_URL = "http://localhost:3001/api/users";
 
-const gallery: User_Collection = new User_Collection(BACKEND_ROOT_URL);
+const users: User_Collection = new User_Collection(BACKEND_ROOT_URL);
 
-gallery
+users
   .getUsers()
   .then((restaurants: Array<User>) => {
     restaurants.forEach((restaurant) => {
