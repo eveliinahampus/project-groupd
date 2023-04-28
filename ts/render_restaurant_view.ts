@@ -32,10 +32,10 @@ fetch("http://localhost:3001/api/restaurants")
       for (let i = 0; i < restaurant_data.length; i++) {
         console.log("-------name",restaurant_data[i].restaurant_name);
       }
-      renderRestaurant(restaurant_data[0]);
-
-    }
-  })
+      //set the first restaurant as default ,change it later for another restaurant page
+      renderRestaurant(restaurant_data[1]);
+      renderReview(restaurant_data[1]);
+  }})
   .catch((error) => console.log(error));
 
 
@@ -51,7 +51,7 @@ function renderRestaurant( restaurant_data: any) {
   // create h6 element with class "text-success" and text content "More about restaurant"
   const h6Element = document.createElement("h6");
   h6Element.className = "text-success";
-  h6Element.textContent = "More about restaurant";
+  h6Element.textContent = `average/${restaurant_data.average_stars}`;
 
   // create h1 element with text content "Name / Rocket Burger"
   const h1Element = document.createElement("h1");
@@ -78,30 +78,24 @@ function renderRestaurant( restaurant_data: any) {
 //review  section
 
 
-let reviews_data = [];
-fetch("http://localhost:3001/api/reviews")
-  .then((response) => response.json())
-  .then((json) => {
-    console.log("full json", json);
-    reviews_data = json;
+// let reviews_data = [];
+// fetch("http://localhost:3001/api/reviews")
+//   .then((response) => response.json())
+//   .then((json) => {
+//     console.log("full json", json);
+//     reviews_data = json;
 
-    console.log("reviews_data", reviews_data.length);
+//     console.log("reviews_data", reviews_data.length);
 
-    //show all restaurants
-    if (reviews_data) {
-      // excute only if restaurant_data is not undefined
-      for (let i = 0; i < restaurant_data.length; i++) {
-        console.log("-------title",reviews_data[i].review_title);
-      }
-      renderReview(reviews_data[0]);
-      renderReview(reviews_data[9]);
-      renderReview(reviews_data[2]);
-      renderReview(reviews_data[3]);
-      renderReview(reviews_data[4]);
-
-    }
-  })
-  .catch((error) => console.log(error));
+//     //show all restaurants
+//     if (reviews_data) {
+//       // excute only if restaurant_data is not undefined
+//       for (let i = 0; i < restaurant_data.length; i++) {
+//         console.log("-------title",reviews_data[i].review_title);
+//       }
+//     }
+//   })
+//   .catch((error) => console.log(error));
 
 /* 
   <div class="col-lg-4 col-sm-6">
@@ -126,60 +120,66 @@ fetch("http://localhost:3001/api/reviews")
 //dom 
 const parentID2 = "full-reviews";
 
-function renderReview( reviews_data: any) {
-  if (!reviews_data) return; // checking null
+function renderReview( restaurant_data: any) {
+  if (!restaurant_data) return; // checking null
 
-  // create div element with class "col-lg-4 col-sm-6"
-  const divElement = document.createElement("div");
-  divElement.className = "col-lg-4 col-sm-6";
+    for (let i = 0; i < restaurant_data.reviews.length; i++) {
+      
 
-  // create div element with class "recommendation"
-  const divElement2 = document.createElement("div");
-  divElement2.className = "recommendation";
+      // create div element with class "col-lg-4 col-sm-6"
+      const divElement = document.createElement("div");
+      divElement.className = "col-lg-4 col-sm-6";
 
-  // !create img element with src "../server/public/images/breads.jpg" and alt "food"
-  const imgElement = document.createElement("img");
-  imgElement.src = "../server/public/images/breads.jpg";
-  imgElement.alt = "food";
+      // create div element with class "recommendation"
+      const divElement2 = document.createElement("div");
+      divElement2.className = "recommendation";
 
-  // create div element with class "beforeoverlay"
-  const divElement3 = document.createElement("div");
-  divElement3.className = "beforeoverlay";
+      // !create img element with src "../server/public/images/breads.jpg" and alt "food"
+      const imgElement = document.createElement("img");
+      imgElement.src = "../server/public/images/breads.jpg";
+      imgElement.alt = "food";
 
-  // create h4 element with class "text-white" and text content "stars: number / title / date"
-  const h4Element = document.createElement("h4");
-  h4Element.className = "text-white";
-  h4Element.textContent = `${reviews_data.stars} / ${reviews_data.review_title} `;
+      // create div element with class "beforeoverlay"
+      const divElement3 = document.createElement("div");
+      divElement3.className = "beforeoverlay";
 
-  // create div element with class "overlay"
-  const divElement4 = document.createElement("div");
-  divElement4.className = "overlay";
+      // create h4 element with class "text-white" and text content "stars: number / title / date"
+      const h4Element = document.createElement("h4");
+      h4Element.className = "text-white";
+      h4Element.textContent = `${restaurant_data.reviews[i].stars} / ${restaurant_data.reviews[i].review_title} `;
 
-  // create h4 element with class "text-white" and text content "stars: number / title / date"
-  const h4Element2 = document.createElement("h4");
-  h4Element2.className = "text-white";
-  h4Element2.textContent = `${reviews_data.stars} / ${reviews_data.review_title} `; 
+      // create div element with class "overlay"
+      const divElement4 = document.createElement("div");
+      divElement4.className = "overlay";
 
-  // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
-  const pElement = document.createElement("p");
-  pElement.className = "text-white";
-  pElement.textContent = `${reviews_data.review_body} date: ${reviews_data.created_at}`;
+      // create h4 element with class "text-white" and text content "stars: number / title / date"
+      const h4Element2 = document.createElement("h4");
+      h4Element2.className = "text-white";
 
-  // append child elements to div element
-  divElement.appendChild(divElement2);
+      
+      h4Element2.textContent = `${restaurant_data.reviews[i].stars} / ${restaurant_data.reviews[i].review_title} `; 
 
-  divElement2.appendChild(imgElement);
-  divElement2.appendChild(divElement3);
-  divElement2.appendChild(divElement4);
+      // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
+      const pElement = document.createElement("p");
+      pElement.className = "text-white";
+      pElement.textContent = `${restaurant_data.reviews[i].review_body} date: ${restaurant_data.reviews[i].created_at}`;
 
-  divElement3.appendChild(h4Element);
-  divElement4.appendChild(h4Element2);
-  divElement4.appendChild(pElement);
+      // append child elements to div element
+      divElement.appendChild(divElement2);
 
-  // get parent element and append div element to it
-  const parentElement = document.getElementById(parentID2);
-  if (parentElement) {
-    parentElement.appendChild(divElement);
-  }
+      divElement2.appendChild(imgElement);
+      divElement2.appendChild(divElement3);
+      divElement2.appendChild(divElement4);
+
+      divElement3.appendChild(h4Element);
+      divElement4.appendChild(h4Element2);
+      divElement4.appendChild(pElement);
+
+      // get parent element and append div element to it
+      const parentElement = document.getElementById(parentID2);
+      if (parentElement) {
+        parentElement.appendChild(divElement);
+      }
+    }
 
 }
