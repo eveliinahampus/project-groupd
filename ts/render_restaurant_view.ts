@@ -6,7 +6,7 @@ const BACKEND_ROOT_URL = "http://localhost:3001/api/restaurants";
 /* const gallery: Restaurant_Collection = new Restaurant_Collection(BACKEND_ROOT_URL);
 
 gallery
-  .getRestuarants()
+  .getRestaurants()
   .then((restaurants: Array<Restaurant>) => {
     restaurants.forEach((restaurant) => {
       renderRestaurant(restaurant);
