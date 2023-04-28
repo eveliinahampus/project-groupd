@@ -3,13 +3,13 @@
 ### Description
 Web Programming Project -course for spring 2023
 
-A social media app for reviewing restaurants. Users can register, login and add their reviews, along with pictures, rate restaurants, add restaurant's location via Google Map's plugin. Site will also return with recommendations based on top rated restaurants.
+A social media app for reviewing restaurants. Users can register, login and add their reviews, along with pictures, rate restaurants, view restaurants' location via umap and OpenStreetMap. Site will also return with recommendations based on top rated restaurants.
 
 ### Roles
-- Frontend Developer/Tester: Hua Chen (balletty2008) 
-- Product Owner/Scrum Master: Eveliina Hampus (t2haev00) 
-- Backend Developer: Yerold Sanabria (doteins)
-- Frontend Developer/Designer: Tomoko Takami (Tomokazuki)
+- Frontend Developer/Tester: Hua Chen ( @balletty2008 ) 
+- Product Owner/Scrum Master: Eveliina Hampus ( @t2haev00 ) 
+- Backend Developer: Yerold Sanabria ( @doteins )
+- Frontend Developer/Designer: Tomoko Takami ( @Tomokazuki )
 
 ### Technologies and Programming Languages Used
 - Node.js

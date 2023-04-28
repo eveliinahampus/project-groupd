@@ -64,11 +64,10 @@
           <div class="col-lg-7 mx-auto text-center">
             <h1 class="display-4 text-white">What to eat?</h1>
             <p class="text-white my-3">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas,
-                architecto dolor animi odit veniam necessitatibus?
+              Welcome, welcome! Are you looking for a good meal? You have come to the right place to search for it!
             </p>
             <a href=".\html\Login.html" class="btn btn-success me-2">Log in</a>
-            <a href=".\html\Register.html" class="btn btn-outline-light">New member</a>
+            <a href=".\html\Register.html" class="btn btn-outline-light">Register</a>
           </div>
         </div>
       </div>
@@ -191,26 +190,25 @@
       </div>
     </section>
 
-    <!-- Features section -->
+    <!-- Map/ Features section -->
     <section class="row py-0 bg-light">
       <div class="col-lg-6 wrap-map">
-        <iframe class="wrapped-iframe" width="100%" height="500px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=25.401420593261722%2C64.99775781792721%2C25.54475784301758%2C65.03067672934593&amp;layer=mapnik"></iframe>
+        <iframe width="100%" height="95%" frameborder="0" allowfullscreen src="//umap.openstreetmap.fr/fi/map/project-group-d-map_906466?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=undefined&captionBar=false#12/65.0126/25.4789"></iframe><p><a href="//umap.openstreetmap.fr/fi/map/project-group-d-map_906466">Click here for fullscreen view.</a></p>
       </div>
       <div class="col-lg-6">
         <div class="container">
           <div class="row">
             <div class="clo-md-10 pt-4 offset-md-1">
-              <h6 class="text-success">Find the right place for you</h6>
-              <h1>Share your opinion</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga rerum minus recusandae dolor fugit impedit.</p>
-              
+              <h6 class="text-success">Find the most delicious lunch place...</h6>
+              <h1><a href="./html/post-a-review.html"> and share your opinion of it!</a></h1>
+              <p>Help the hungry people of your city to explore most delicious cafes and restaurants in town. With the map's toolbox you can also search restaurants.</p>              
               <div class="feature d-flex mt-5">
                 <div class="iconbox me-3">
                   <i class="bi bi-chat-left-dots"></i>
                 </div>
                 <div>
-                  <h5>comments</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, consectetur.</p>
+                  <h5><a href="./html/post-a-review.html"> add a review</a></h5>
+                  <p><a href="./html/post-a-review.html">  Write a review and upload pictures of your plate.</a> </p>
                 </div>
               </div>
               <div class="feature d-flex mt-5">
@@ -219,7 +217,7 @@
                 </div>
                 <div>
                   <h5>favorite</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, consectetur.</p>
+                  <p>Heart your favorite restaurant.</p>
                 </div>
               </div>
               <div class="feature d-flex mt-5">
@@ -228,13 +226,15 @@
                 </div>
                 <div>
                   <h5>star ranking</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, consectetur.</p>
+                  <p>Add stars to rank the restaurant you visited.</p>
                 </div>
               </div>
+            
             </div>
           </div>
         </div>
       </div>
+      
     </section>
 
     <!-- recommendations section -->
@@ -368,11 +368,57 @@
       </div>
     </section>
 
+    <!-- about section -->
+<section id="team" class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto text-center">
+        <h6 class="text-success">About</h6>
+        <h1>Web Programming Project</h1>
+        <p>
+          Team Spring 2023
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-3 col-sm-6 text-center">
+        <div class="team-member card-effect">
+          <img src="./server/public/images/dishes.jpg" alt="team member">
+          <h5 class="mb-0 mt-4">Hua Chen</h5>
+          <p>Frontend Developer/Tester</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <div class="team-member card-effect">
+          <img src="./server/public/images/dishes.jpg" alt="team member">
+          <h5 class="mb-0 mt-4">Eveliina Hampus</h5>
+          <p>Scrum Master/Product Owner</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <div class="team-member card-effect">
+          <img src="./server/public/images/dishes.jpg" alt="team member">
+          <h5 class="mb-0 mt-4">Yerold Sanabria</h5>
+          <p>Backend Developer</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 text-center">
+        <div class="team-member card-effect">
+          <img src="./server/public/images/dishes.jpg" alt="team member">
+          <h5 class="mb-0 mt-4">Tomoko Takami</h5>
+          <p>Frontend Developer/Designer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   <!-- footer section -->
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="./index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="./html/faq.html" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      <li class="nav-item"><a href="./html/about.html" class="nav-link px-2 text-body-secondary">About Us</a></li>
       <li class="nav-item"><a href="./html/contactus.html" class="nav-link px-2 text-body-secondary">Contact Us</a></li>
     </ul>
     <p class="text-center text-body-secondary">© 2023 Web Programming Project: Team D</p>

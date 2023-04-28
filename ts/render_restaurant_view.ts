@@ -5,9 +5,9 @@ import { Restaurant } from "./class/Restaurant.js";
 
 const BACKEND_ROOT_URL = "http://localhost:3001/api/restaurants";
 
-/* const gallery: Restaurant_Collection = new Restaurant_Collection(BACKEND_ROOT_URL);
+/* const restaurants: Restaurant_Collection = new Restaurant_Collection(BACKEND_ROOT_URL);
 
-gallery
+restaurants
   .getRestaurants()
   .then((restaurants: Array<Restaurant>) => {
     restaurants.forEach((restaurant) => {
