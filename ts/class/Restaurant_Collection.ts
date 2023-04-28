@@ -4,7 +4,7 @@ class Restaurant_Collection {
   restaurants_collection: Array<Restaurant> = [];
   #backend_url = "";
 
-  constructor(url) {
+  constructor(url: string) {
     this.#backend_url = url;
   }
 
