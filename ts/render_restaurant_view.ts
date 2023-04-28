@@ -1,5 +1,7 @@
 import { Restaurant_Collection } from "./class/Restaurant_Collection.js";
 import { Restaurant } from "./class/Restaurant.js";
+//import { Gallery } from "./class/Gallery.js";
+//import { Image } from "./class/Image.js";
 
 const BACKEND_ROOT_URL = "http://localhost:3001/api/restaurants";
 
@@ -15,6 +17,21 @@ gallery
   .catch((error) => {
     alert(error);
   }); */
+
+  /*
+const gallery: Gallery = new Gallery(BACKEND_ROOT_URL);
+
+gallery
+  .getImages()
+  .then((images: Array<Image>) => {
+    images.forEach((image) => {
+      renderReview(image);
+    });
+  })
+  .catch((error) => {
+    alert(error);
+  });
+*/
   
 
 let restaurant_data = [];
