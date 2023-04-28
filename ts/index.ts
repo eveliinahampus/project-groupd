@@ -26,52 +26,59 @@ const renderImage = (image_from_db) => {
 
   const serviceDiv = document.createElement("div");
   serviceDiv.setAttribute("class", "service card-effect");
+  serviceDiv.style.borderRadius = "5%"
 
   const iconsDiv = document.createElement("div");
-  iconsDiv.classList.add("icons");
+  iconsDiv.classList.add("icons","pb-2");
 
+  // Displays rating-stars
+  const starsDiv = document.createElement("div");
+  starsDiv.classList.add("stars");
+  // for (let i = 0; i < 4; i++) {
+  //   const starIcon = document.createElement("i");
+  //   starIcon.classList.add("bi", "bi-star-fill");
+  //   starsDiv.appendChild(starIcon);
+  // }
+  const starIcon = document.createElement("i");
+  starIcon.classList.add("bi", "bi-star-fill");
+  starsDiv.appendChild(starIcon);
+  const starsCount = document.createElement("p");
+  starsCount.style.display = "inline"
+  starsCount.textContent = "4.5";
+  starsCount.classList.add("mx-2")
+  starsDiv.appendChild(starsCount);
+  iconsDiv.appendChild(starsDiv);
+
+  // Displays the hearts
+  const favoriteDiv = document.createElement("div");
+  favoriteDiv.classList.add("favorite");
+  const favoriteIcon = document.createElement("i");
+  favoriteIcon.classList.add("bi", "bi-suit-heart-fill", "mx-2");
+  const favoriteCount = document.createElement("p");
+  favoriteCount.style.display = "inline"
+  favoriteCount.textContent = "100";
+  favoriteDiv.appendChild(favoriteIcon);
+  favoriteDiv.appendChild(favoriteCount);
+  iconsDiv.appendChild(favoriteDiv);
+
+  // Displays number of reviews
   const recommendationDiv = document.createElement("div");
   recommendationDiv.classList.add("recommendation");
   const recommendationIcon = document.createElement("i");
-  recommendationIcon.classList.add("bi", "bi-chat-left-dots");
+  recommendationIcon.classList.add("bi", "bi-chat-left-dots", "mx-2");
   const recommendationCount = document.createElement("p");
+  recommendationCount.style.display = "inline"
   recommendationCount.textContent = "32";
   recommendationDiv.appendChild(recommendationIcon);
   recommendationDiv.appendChild(recommendationCount);
   iconsDiv.appendChild(recommendationDiv);
-
-  // Displays the hearts
-  // const favoriteDiv = document.createElement("div");
-  // favoriteDiv.classList.add("favorite");
-  // const favoriteIcon = document.createElement("i");
-  // favoriteIcon.classList.add("bi", "bi-suit-heart-fill");
-  // const favoriteCount = document.createElement("p");
-  // favoriteCount.textContent = "100";
-  // favoriteDiv.appendChild(favoriteIcon);
-  // favoriteDiv.appendChild(favoriteCount);
-  // iconsDiv.appendChild(favoriteDiv);
-
-  const starsDiv = document.createElement("div");
-  starsDiv.classList.add("stars");
-  for (let i = 0; i < 4; i++) {
-    const starIcon = document.createElement("i");
-    starIcon.classList.add("bi", "bi-star-fill");
-    starsDiv.appendChild(starIcon);
-  }
-  const halfStarIcon = document.createElement("i");
-  halfStarIcon.classList.add("bi", "bi-star-half");
-  starsDiv.appendChild(halfStarIcon);
-  const starsCount = document.createElement("p");
-  starsCount.textContent = "4.5";
-  starsDiv.appendChild(starsCount);
-  iconsDiv.appendChild(starsDiv);
 
   serviceDiv.appendChild(iconsDiv);
 
   const restaurantImage = document.createElement("img");
   restaurantImage.setAttribute("class", "restaurantImage img-fluid")
   restaurantImage.src = `http://localhost:3001/images/${image_from_db.img_name}`;
-  restaurantImage.alt = "food1";
+  restaurantImage.alt = "Tasty dinner here!";
   serviceDiv.appendChild(restaurantImage);
 
   const restaurantName = document.createElement("h5");
