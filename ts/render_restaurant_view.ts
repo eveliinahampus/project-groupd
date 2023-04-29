@@ -3,7 +3,7 @@
 //import { Gallery } from "./class/Gallery.js";
 //import { Image } from "./class/Image.js";
 
-const BACKEND_ROOT_URL = "http://localhost:3001/api/restaurants";
+//const BACKEND_ROOT_URL = "http://localhost:3001/api/restaurants";
 
 /* const restaurants: Restaurant_Collection = new Restaurant_Collection(BACKEND_ROOT_URL);
 
@@ -18,7 +18,7 @@ restaurants
     alert(error);
   }); */
 
-  /*
+/*
 const gallery: Gallery = new Gallery(BACKEND_ROOT_URL);
 
 gallery
@@ -32,7 +32,6 @@ gallery
     alert(error);
   });
 */
-  
 
 let restaurant_data = [];
 fetch("http://localhost:3001/api/restaurants")
@@ -47,18 +46,18 @@ fetch("http://localhost:3001/api/restaurants")
     if (restaurant_data) {
       // excute only if restaurant_data is not undefined
       for (let i = 0; i < restaurant_data.length; i++) {
-        console.log("-------name",restaurant_data[i].restaurant_name);
+        console.log("-------name", restaurant_data[i].restaurant_name);
       }
       //set the first restaurant as default ,change it later for another restaurant page
       renderRestaurant(restaurant_data[1]);
       renderReview(restaurant_data[1]);
-  }})
+    }
+  })
   .catch((error) => console.log(error));
-
 
 const parentID = "restaurant-info";
 
-function renderRestaurant( restaurant_data: any) {
+function renderRestaurant(restaurant_data: any) {
   if (!restaurant_data) return; // checking null
 
   // create div element with class "col-md-8 mx-auto text-center"
@@ -90,10 +89,7 @@ function renderRestaurant( restaurant_data: any) {
   }
 }
 
-
-
 //review  section
-
 
 // let reviews_data = [];
 // fetch("http://localhost:3001/api/reviews")
@@ -114,16 +110,14 @@ function renderRestaurant( restaurant_data: any) {
 //   })
 //   .catch((error) => console.log(error));
 
-
-
-//dom 
+//dom
 const parentID2 = "full-reviews";
 
-function renderReview( restaurant_data: any) {
+function renderReview(restaurant_data: any) {
   if (!restaurant_data) return; // checking null
 
-    for (let i = 0; i < restaurant_data.reviews.length; i++){
-      /* 
+  for (let i = 0; i < restaurant_data.reviews.length; i++) {
+    /* 
       <div class="col-lg-4 col-sm-6">
       <div class="recommendation">
         <img src="../server/public/images/breads.jpg" alt="food">
@@ -152,108 +146,106 @@ function renderReview( restaurant_data: any) {
 
       </div> */
 
-      // create div element with class "col-lg-4 col-sm-6"
-      const divElement = document.createElement("div");
-      divElement.className = "col-lg-4 col-sm-6";
+    // create div element with class "col-lg-4 col-sm-6"
+    const divElement = document.createElement("div");
+    divElement.className = "col-lg-4 col-sm-6";
 
-      // create div element with class "recommendation"
-      const divElement2 = document.createElement("div");
-      
-      divElement2.className = "recommendation";
+    // create div element with class "recommendation"
+    const divElement2 = document.createElement("div");
 
-      // create img element with src "../server/public/images/breads.jpg" and alt "food"
+    divElement2.className = "recommendation";
 
-      const imgElement = document.createElement("img");
-      imgElement.src = "../server/public/images/breads.jpg";
-      imgElement.alt = "food";
+    // create img element with src "../server/public/images/breads.jpg" and alt "food"
 
-      // create div element with class "beforeoverlay"
-      const divElement3 = document.createElement("div");
-      divElement3.className = "beforeoverlay";
+    const imgElement = document.createElement("img");
+    imgElement.src = "../server/public/images/breads.jpg";
+    imgElement.alt = "food";
 
-      // create div element with class "icons"
-      const divElement4 = document.createElement("div");
-      divElement4.className = "icons";
+    // create div element with class "beforeoverlay"
+    const divElement3 = document.createElement("div");
+    divElement3.className = "beforeoverlay";
 
-      // create h4 element with class "text-white" and text content "★4"
-      const h4Element = document.createElement("h4");
-      h4Element.className = "text-white";
-      h4Element.textContent = `★${restaurant_data.reviews[i].stars}`;
+    // create div element with class "icons"
+    const divElement4 = document.createElement("div");
+    divElement4.className = "icons";
 
-      // create h4 element with class "text-white" and text content "title"
-      const h4Element2 = document.createElement("h4");
-      h4Element2.className = "text-white";
-      h4Element2.textContent = `${restaurant_data.reviews[i].review_title}`;
+    // create h4 element with class "text-white" and text content "★4"
+    const h4Element = document.createElement("h4");
+    h4Element.className = "text-white";
+    h4Element.textContent = `★${restaurant_data.reviews[i].stars}`;
 
-      // create p element with class "text-white" and text content "date"
-      // show only year-month-day
-      const dateString = restaurant_data.reviews[i].created_at;
-      const date = dateString.substring(0, 10);
+    // create h4 element with class "text-white" and text content "title"
+    const h4Element2 = document.createElement("h4");
+    h4Element2.className = "text-white";
+    h4Element2.textContent = `${restaurant_data.reviews[i].review_title}`;
 
-      const pElement = document.createElement("p");
-      pElement.className = "text-white";
-      pElement.textContent = `${date}`;
+    // create p element with class "text-white" and text content "date"
+    // show only year-month-day
+    const dateString = restaurant_data.reviews[i].created_at;
+    const date = dateString.substring(0, 10);
 
-      // append child elements to div element "icons"
-      divElement4.appendChild(h4Element);
-      divElement4.appendChild(h4Element2);
-      divElement4.appendChild(pElement);
+    const pElement = document.createElement("p");
+    pElement.className = "text-white";
+    pElement.textContent = `${date}`;
 
-      // append child elements to div element "beforeoverlay"
-      divElement3.appendChild(divElement4);
+    // append child elements to div element "icons"
+    divElement4.appendChild(h4Element);
+    divElement4.appendChild(h4Element2);
+    divElement4.appendChild(pElement);
 
+    // append child elements to div element "beforeoverlay"
+    divElement3.appendChild(divElement4);
 
+    // create div element with class "overlay"
+    const divElement5 = document.createElement("div");
+    divElement5.className = "overlay";
 
-      // create div element with class "overlay"
-      const divElement5 = document.createElement("div");
-      divElement5.className = "overlay";
+    // create div element with class "icons"
+    const divElement6 = document.createElement("div");
+    divElement6.className = "icons";
 
-      // create div element with class "icons"
-      const divElement6 = document.createElement("div");
-      divElement6.className = "icons";
+    // create h4 element with class "text-white" and text content "★4"
+    const h4Element3 = document.createElement("h4");
+    h4Element3.className = "text-white";
+    h4Element3.textContent = `★${restaurant_data.reviews[i].stars}`;
 
-      // create h4 element with class "text-white" and text content "★4"
-      const h4Element3 = document.createElement("h4");
-      h4Element3.className = "text-white";
-      h4Element3.textContent = `★${restaurant_data.reviews[i].stars}`;
+    // create h4 element with class "text-white" and text content "title"
+    const h4Element4 = document.createElement("h4");
+    h4Element4.className = "text-white";
+    h4Element4.textContent = `${restaurant_data.reviews[i].review_title}`;
 
-      // create h4 element with class "text-white" and text content "title"
-      const h4Element4 = document.createElement("h4");
-      h4Element4.className = "text-white";
-      h4Element4.textContent = `${restaurant_data.reviews[i].review_title}`;
+    // create p element with class "text-white" and text content "date"
+    const pElement2 = document.createElement("p");
+    pElement2.className = "text-white";
+    pElement2.textContent = `${date}`;
 
-      // create p element with class "text-white" and text content "date"
-      const pElement2 = document.createElement("p");
-      pElement2.className = "text-white";
-      pElement2.textContent = `${date}`;
+    // append child elements to div element "icons"
+    divElement6.appendChild(h4Element3);
+    divElement6.appendChild(h4Element4);
+    divElement6.appendChild(pElement2);
 
-      // append child elements to div element "icons"
-      divElement6.appendChild(h4Element3);
-      divElement6.appendChild(h4Element4);
-      divElement6.appendChild(pElement2);
+    // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
+    const pElement3 = document.createElement("p");
+    pElement3.className = "text-white";
+    pElement3.textContent = `${restaurant_data.reviews[i].review_body} /user_id: ${restaurant_data.reviews[i].user_id}`;
 
-      // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
-      const pElement3 = document.createElement("p");
-      pElement3.className = "text-white";
-      pElement3.textContent = `${restaurant_data.reviews[i].review_body} /user_id: ${restaurant_data.reviews[i].user_id}`;
+    // append child elements to div element "overlay"
+    divElement5.appendChild(divElement6);
+    divElement5.appendChild(pElement3);
 
-      // append child elements to div element "overlay"
-      divElement5.appendChild(divElement6);
-      divElement5.appendChild(pElement3);
+    // append child elements to div element "recommendation"
+    divElement2.appendChild(imgElement);
+    divElement2.appendChild(divElement3);
+    divElement2.appendChild(divElement5);
 
-      // append child elements to div element "recommendation"
-      divElement2.appendChild(imgElement);
-      divElement2.appendChild(divElement3);
-      divElement2.appendChild(divElement5);
+    // append child elements to div element "col-lg-4 col-sm-6"
+    divElement.appendChild(divElement2);
 
-      // append child elements to div element "col-lg-4 col-sm-6"
-      divElement.appendChild(divElement2);
+    // append child elements to div element "row"
 
-      // append child elements to div element "row"
-      
-      const parentElement = document.getElementById(parentID2);
-          if (parentElement) {
-             parentElement.appendChild(divElement);
-           }
+    const parentElement = document.getElementById(parentID2);
+    if (parentElement) {
+      parentElement.appendChild(divElement);
     }
-  };
+  }
+}
