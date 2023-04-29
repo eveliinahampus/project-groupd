@@ -1,0 +1,8 @@
+INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city, zip code)
+VALUES ( 'restaurant3', 'Harald Oulu', '+358 44 766 8000', 'Kirkkokatu 16', 'Oulu', '90100');
+
+
+'Great Viking Feast or Luxurious Lunch' '5 stars'
+Harald is designed concept for Viking style restaurant. It has its own atmosphere, and all the food are delicious. They offer awesome luncheons, have well thought menu for little children and also they offer packages for romantic dinners.
+
+I can never praise too much of their food. They use a lot herbs, berries, game and fish dishes, as well as mushrooms. The coffee after meal is one of the best in Oulu. Very warmly recommend to visit this place. Proper and hearty meals, true for Viking style.
