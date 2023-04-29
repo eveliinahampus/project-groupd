@@ -179,7 +179,12 @@ function renderReview( restaurant_data: any) {
       // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
       const pElement = document.createElement("p");
       pElement.className = "text-white";
-      pElement.textContent = `${restaurant_data.reviews[i].review_body} date: ${restaurant_data.reviews[i].created_at}`;
+
+      // show only year-month-day
+      const dateString = restaurant_data.reviews[i].created_at;
+      const date = dateString.substring(0, 10);
+
+      pElement.textContent = `${restaurant_data.reviews[i].review_body} date: ${date}`;
 
       // append child elements to div element
       divElement.appendChild(divElement2);
