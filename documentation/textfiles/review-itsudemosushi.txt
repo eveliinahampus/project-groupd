@@ -2,3 +2,6 @@ INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city
 VALUES (restaurant4, Itsudemo Sushi, +358 50 406 6924, Uusikatu 26, Oulu, 90100);
 
 'Some basic sushi meals' '4 stars'
+Itsudemo Sushi offers a variety of sushi. Some are very traditional and some more inventive hybrid kitchen type. Always these inventions don't hit jackpot so sometimes for ordering to home a preplanned sushi set, you can get both positive and negative surprises.
+
+Prices are decent and food is a good quality. I have never eaten in the premises, but asked husband to order something at home. 
