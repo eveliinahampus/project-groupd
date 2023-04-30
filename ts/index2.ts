@@ -17,7 +17,7 @@ let reviews_data_index = [];
          renderReviewLatest(reviews_data_index[i]);
 
        }
-       
+
       //ここの関数をつくる！！
       //renderRestaurantIndex(restaurant_data[1]);
 
@@ -56,10 +56,7 @@ fetch("http://localhost:3001/api/restaurants")
 
 //dom
 
-
 const parentID3 = "latestReview";
-
-
 
 function renderReviewLatest(reviews_data_index: any) {
   if (!reviews_data_index) return; // checking null
@@ -212,6 +209,8 @@ function renderReviewLatest(reviews_data_index: any) {
             const h4Element5 = document.createElement("h4");
             h4Element5.className = "overlay";
             h4Element5.textContent = `${filteredObjects[0].restaurant_name}`;
+            //change color to
+            h4Element5.style.color = "";
 
             // append child elements to div element "col-lg-4 col-sm-6"
             divElement.appendChild(h4Element5);

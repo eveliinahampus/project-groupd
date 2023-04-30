@@ -75,12 +75,17 @@ function renderRestaurant(restaurant_data: any) {
 
   // create p element with text content "phone_number: string street_address: string city: string zip_code: string"
   const pElement = document.createElement("p");
-  pElement.textContent = `${restaurant_data.street_address}  ,${restaurant_data.city}  , ${restaurant_data.zip_code} / ${restaurant_data.phone_number}`;
+  pElement.textContent = `${restaurant_data.street_address}  ,${restaurant_data.city}  , ${restaurant_data.zip_code} `;
+
+  // create p element with text content "phone_number
+  const pElement2 = document.createElement("p");
+  pElement2.textContent = `${restaurant_data.phone_number}`;
 
   // append child elements to div element
   divElement.appendChild(h6Element);
   divElement.appendChild(h1Element);
   divElement.appendChild(pElement);
+  divElement.appendChild(pElement2);
 
   // get parent element and append div element to it
   const parentElement = document.getElementById(parentID);
