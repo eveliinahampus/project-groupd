@@ -6,13 +6,13 @@ Web Programming Project -course for spring 2023
 A social media app for reviewing restaurants. Users can register, login and add their reviews, along with pictures, rate restaurants, view restaurants' location via umap and OpenStreetMap. Site will also return with recommendations based on top rated restaurants.
 
 ### Deployment
-This site is deployed via Github Pages in <a href="https://t2haev00.github.io/project-groupd/">here</a>. Database is running at render which can cause some sluqqiness while fetching the data.
+This site is deployed via Github Pages in <a href="https://t2haev00.github.io/project-groupd/">here</a>. Database is running at render which can cause some slugginess while fetching the data.
 
 ### Roles
-- Frontend Developer/Tester: Hua Chen ( @balletty2008 ) 
-- Product Owner/Scrum Master: Eveliina Hampus ( @t2haev00 ) 
-- Backend Developer: Yerold Sanabria ( @doteins )
-- Frontend Developer/Designer: Tomoko Takami ( @Tomokazuki )
+- Frontend Developer/Tester: Hua Chen (<a href="https://github.com/balletty2008">balletty2008</a>) 
+- Product Owner/Scrum Master: Eveliina Hampus (<a href="https://github.com/t2haev00">t2haev00</a>) 
+- Backend Developer: Yerold Sanabria (<a href="https://github.com/doteins">doteins</a>)
+- Frontend Developer/Designer: Tomoko Takami (<a href="https://github.com/Tomokazuki">Tomokazuki</a>)
 
 ### Technologies and Programming Languages Used
 - Node.js
