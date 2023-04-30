@@ -142,11 +142,12 @@ function renderReviewLatest(reviews_data_index: any) {
 
     // append child elements to div element "icons"
     divElement4.appendChild(h4Element);
-    divElement4.appendChild(h4Element2);
+   
     divElement4.appendChild(pElement);
 
     // append child elements to div element "beforeoverlay"
     divElement3.appendChild(divElement4);
+    divElement3.appendChild(h4Element2);
 
 
     // create div element with class "overlay"
@@ -174,7 +175,7 @@ function renderReviewLatest(reviews_data_index: any) {
 
     // append child elements to div element "icons"
     divElement6.appendChild(h4Element3);
-    divElement6.appendChild(h4Element4);
+    
     divElement6.appendChild(pElement2);
 
     // create p element with class "text-white" and text content 
@@ -184,6 +185,7 @@ function renderReviewLatest(reviews_data_index: any) {
 
     // append child elements to div element "overlay"
     divElement5.appendChild(divElement6);
+    divElement5.appendChild(h4Element4);
     divElement5.appendChild(pElement3);
 
     // append child elements to div element "recommendation"
