@@ -17,8 +17,7 @@ let reviews_data_index = [];
          renderReviewLatest(reviews_data_index[i]);
 
        }
-
-
+       
       //ここの関数をつくる！！
       //renderRestaurantIndex(restaurant_data[1]);
 
@@ -45,10 +44,8 @@ fetch("http://localhost:3001/api/restaurants")
       for (let i = 0; i < restaurant_data_index.length; i++) {
         console.log("-------name", restaurant_data_index[i].restaurant_name);
       }
+    
       
-      
-
-
       //ここの関数をつくる！！
       //renderRestaurantIndex(restaurant_data[1]);
       //renderReviewLatest(restaurant_data_index[1]);
@@ -63,12 +60,12 @@ fetch("http://localhost:3001/api/restaurants")
 const parentID3 = "latestReview";
 
 
-//////!!!!!!!!!!!!!!!!!!REVIEW のデータでこのファンクション作る
 
 function renderReviewLatest(reviews_data_index: any) {
   if (!reviews_data_index) return; // checking null
 
  // for (let i = 0; i < reviews_data_index.length; i++) {
+
     /* 
       <div class="col-lg-4 col-sm-6">
       <div class="recommendation">
@@ -181,26 +178,52 @@ function renderReviewLatest(reviews_data_index: any) {
     // create p element with class "text-white" and text content 
     const pElement3 = document.createElement("p");
     pElement3.className = "text-white";
-    pElement3.textContent = `${reviews_data_index.review_body} /user_id: ${reviews_data_index.user_id}`;
+    pElement3.textContent = `${reviews_data_index.review_body} / ${reviews_data_index.username}`;
+
+    //create p element with class "text-white" and text content username
+    const pElement4 = document.createElement("p");
+    pElement4.className = "text-white";
+    pElement4.textContent = `${reviews_data_index.username}`;
+
 
     // append child elements to div element "overlay"
     divElement5.appendChild(divElement6);
     divElement5.appendChild(h4Element4);
     divElement5.appendChild(pElement3);
+    divElement5.appendChild(pElement4);
 
     // append child elements to div element "recommendation"
     divElement2.appendChild(imgElement);
     divElement2.appendChild(divElement3);
     divElement2.appendChild(divElement5);
 
+        // restaurant name
+
+            const targetId = reviews_data_index.restaurant_id;
+            console.log(targetId);
+
+            // IDがtargetIdと一致するオブジェクトを抽出する
+            const filteredObjects = restaurant_data_index.filter( restaurant_data_index => restaurant_data_index.id === targetId);
+
+            // 抽出したオブジェクトを出力する
+            console.log("----!!!restname",filteredObjects[0].restaurant_name);
+
+            //DOM　 <h4 class="overlay">restaurant name</h4>
+            const h4Element5 = document.createElement("h4");
+            h4Element5.className = "overlay";
+            h4Element5.textContent = `${filteredObjects[0].restaurant_name}`;
+
+            // append child elements to div element "col-lg-4 col-sm-6"
+            divElement.appendChild(h4Element5);
+
     // append child elements to div element "col-lg-4 col-sm-6"
     divElement.appendChild(divElement2);
 
     // append child elements to div element "row"
-
     const parentElement = document.getElementById(parentID3);
     if (parentElement) {
       parentElement.appendChild(divElement);
     }
-  }
-//}
+
+
+}

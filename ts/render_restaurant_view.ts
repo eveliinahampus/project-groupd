@@ -226,12 +226,19 @@ function renderReview(restaurant_data: any) {
     // create p element with class "text-white" and text content "id: number title: string body: string stars: number restaurant_id: number user_id: number date: string"
     const pElement3 = document.createElement("p");
     pElement3.className = "text-white";
-    pElement3.textContent = `${restaurant_data.reviews[i].review_body} /user_id: ${restaurant_data.reviews[i].user_id}`;
+    pElement3.textContent = `${restaurant_data.reviews[i].review_body} `;
     
+    //create p element with class "text-white" and text content username
+    const pElement4 = document.createElement("p");
+    pElement4.className = "text-white";
+    pElement4.textContent = `${restaurant_data.reviews[i].username}`;
+
+
     // append child elements to div element "overlay"
     divElement5.appendChild(divElement6);
     divElement5.appendChild(h4Element4);
     divElement5.appendChild(pElement3);
+    divElement5.appendChild(pElement4);
 
     // append child elements to div element "recommendation"
     divElement2.appendChild(imgElement);
