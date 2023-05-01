@@ -19,7 +19,7 @@ fetch("http://localhost:3001/api/reviews")
       //showing the latest 6 reviews
       const sortedReviews = reviews_data_index.sort((a, b) => {
         return b.created_at - a.created_at;
-      });
+      }).reverse();
       for (let i = 0; i < 6; i++) {
         renderReviewCard(sortedReviews[i]);
       }
@@ -27,8 +27,8 @@ fetch("http://localhost:3001/api/reviews")
   })
   .catch((error) => console.log(error));
 
-let restaurant_data_index = [];
 
+let restaurant_data_index = [];
 fetch("http://localhost:3001/api/restaurants")
   .then((response) => response.json())
   .then((json) => {
