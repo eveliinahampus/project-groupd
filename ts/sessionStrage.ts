@@ -5,7 +5,7 @@ if (document.getElementById("submit")) {
 
   // When the submit button is clicked, save the email to sessionStorage
   document.getElementById("submit").addEventListener("click", function (event) {
-      event.preventDefault();
+      // event.preventDefault();
       const email = emailInput.value;
       // keep to the sessionStorage
       sessionStorage.setItem("email", email); 
@@ -17,7 +17,7 @@ if (document.getElementById("submit")) {
   const usernameInput = document.getElementById("username")as HTMLInputElement;
   // When the submit button is clicked, save the email to sessionStorage
   document.getElementById("submit").addEventListener("click", function (event) {
-      event.preventDefault();
+      // event.preventDefault();
       const username = usernameInput.value;
       // keep to the sessionStorage
       sessionStorage.setItem("username", username); 
