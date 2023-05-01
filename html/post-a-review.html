@@ -67,7 +67,7 @@
               </p>
             </div>
   
-            <form method="POST" action="http://localhost:3001/api/reviews" class="row g-3 justify-content-center">
+            <form method="POST" action="http://localhost:3001/api/reviews" class="row g-3 justify-content-center" enctype="multipart/form-data">
               <div class="col-md-5">
                 <input type="text" class="form-control" name="username" placeholder="Name" id="userNameReview">
               </div>
@@ -87,7 +87,7 @@
                 <textarea id="" cols="30" rows="5" class="form-control" name="review_body" placeholder="Your review..."></textarea>
               </div>
               <div class="col-md-10">
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" name="image">
                 <label for="file">reading file</label>
                 <p class="help-block">...</p>
               </div>
