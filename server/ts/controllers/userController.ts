@@ -48,7 +48,7 @@ const createUser = async (req: Request, res: Response) => {
         res.status(500).json({ err: err.message });
         return;
       }
-      res.status(200).json({ id: result.rows[0].id });
+      res.status(200).json(result.rows);
     }
   );
 };
