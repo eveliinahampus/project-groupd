@@ -23,7 +23,7 @@ const getAllRestaurants = async (req: Request, res: Response) => {
   });
 };
 
-/* // Retrieves restaurant by given id
+// Retrieves restaurant by given id
 const getRestaurantById = async (req: Request, res: Response) => {
   // Connect to the database
   const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
@@ -45,7 +45,7 @@ const getRestaurantById = async (req: Request, res: Response) => {
     }
   );
 };
-*/
+
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
@@ -107,7 +107,7 @@ const deleteRestaurant = async (req: Request, res: Response) => {
 // Export all the functions as an object to be imported by other modules
 export default {
   getAllRestaurants,
-  // getRestaurantById,
+  getRestaurantById,
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,

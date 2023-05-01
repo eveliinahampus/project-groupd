@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import loggerMiddleware from "./middleware/logger";
+import fileUpload from 'express-fileupload';
 import authenticate from "./middleware/authenticate";
 import resController from "./controllers/resController";
 import revController from "./controllers/revController";
@@ -10,9 +10,6 @@ import loginController from "./controllers/loginController"
 
 // Create a new router object
 const router: Router = express.Router();
-
-// Middleware logger for all routes
-//router.use("/api", [loggerMiddleware.logger, authorizeMiddleware.authorize])
 
 // Define routes for images
 router
@@ -26,7 +23,7 @@ router
 router
   .get("/api/restaurants", resController.getAllRestaurants)
   .post("/api/restaurants", resController.createRestaurant)
-  // .get("/api/restaurants/:id", resController.getRestaurantById)
+  .get("/api/restaurants/:id", resController.getRestaurantById)
   .put("/api/restaurants/update/name/:id", resController.updateRestaurant)
   .delete("/api/restaurants/delete/:id", resController.deleteRestaurant);
 
@@ -38,10 +35,10 @@ router
   .put("/api/users/update/:id", userController.updateUser)
   .delete("/api/users/delete/:id", userController.deleteUser);
 
-// Define routes for reviews (Basic CRUD operations first)
+// Define routes for reviews
 router
   .get("/api/reviews", revController.getAllReviews)
-  .post("/api/reviews", revController.createReview)
+  .post("/api/reviews", fileUpload(), revController.createReview)
   .get("/api/reviews/:id", revController.getReviewById)
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)

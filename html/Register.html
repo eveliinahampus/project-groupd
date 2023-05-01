@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link rel="shortcut icon" href="../logos/logo2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./logos/logo2.png" type="image/x-icon">
     <title>Register</title>
   </head>
 
@@ -59,31 +59,29 @@
 
     <!-- Register section -->
     <div class="hero vh-100 d-flex align-items-center justify-content-center" id="home">
-             
       <div class="wrapper">
-        
         <div class="form-box register">
           <h2>Join Us!</h2>
-          <form action="#" id ="">
+          <form method="POST" action="http://localhost:3001/api/users" >
             <div class="input-box">
               <span class="icon"><ion-icon name="person"></ion-icon></span>
-              <input type="text" id="username" placeholder="Username" required>
+              <input id="username" type="text" name="username" placeholder="Username" required>
             </div>
             <div class="input-box">
               <span class="icon"><ion-icon name="mail"></ion-icon></span>
-              <input type="email" id="email" placeholder="Email" required>
+              <input id="email" type="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-box">
               <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-              <input type="password" id="password" placeholder="Password" required>
+              <input type="password" name="password" placeholder="Password" required>
             </div>
             <div class="remember-forgot">
-              <label><input type="checkbox">I agree to the terms and conditions</label>
+              <label><input type="checkbox" name="agree">I agree to the terms and conditions</label>
             </div>
             <button type="submit" id="submit" class="btn btn-success w-100">SIGN UP</button>
             <div class="login-register">
               <p>Already have an account? <a href="Login.html" class="login-register">Login</a></p>
-                </div>
+            </div>
           </form>
         </div>
       </div>

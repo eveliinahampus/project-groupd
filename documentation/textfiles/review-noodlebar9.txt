@@ -1,5 +1,5 @@
 INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city, zip code)
-VALUES (restaurant6, Noodle Bar 9, +358 8 4152 9999, Merikoskenkatu 9, Oulu, 90500);
+VALUES ('6', 'Noodle Bar 9', '+358 8 4152 9999', 'Merikoskenkatu 9', 'Oulu', '90500');
 
 'Thai style infused food ' '4'
 Food is great and delicious. Oftentimes very fresh and with superb quality. It's been quite a long since I have dined here last, but it's one of the places I could think of visiting again.

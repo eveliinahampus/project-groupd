@@ -5,7 +5,9 @@ import { QueryResult } from "pg";
 const getAllUsers = async (req: Request, res: Response) => {
   let pool = openDb();
 
-  pool.query("select * from users", (err: Error, result: QueryResult) => {
+  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u;"
+
+  pool.query(sql, (err: Error, result: QueryResult) => {
     if (err) {
       res.status(500).json({ err: err.message });
       return;
@@ -20,7 +22,6 @@ const getUserById = async (req: Request, res: Response) => {
   let id = parseInt(req.params.id);
 
   const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u WHERE u.id = $1;"
-
 
   pool.query(
     sql,
@@ -47,7 +48,7 @@ const createUser = async (req: Request, res: Response) => {
         res.status(500).json({ err: err.message });
         return;
       }
-      res.status(200).json({ id: result.rows[0].id });
+      res.status(200).json(result.rows);
     }
   );
 };

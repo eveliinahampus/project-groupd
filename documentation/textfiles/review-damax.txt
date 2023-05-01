@@ -1,5 +1,5 @@
 INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city, zip code)
-VALUES ('restaurant2', 'Da Max', '+358 8 378486', 'Kauppurienkatu 5', 'Oulu', '90100');
+VALUES ('2', 'Da Max', '+358 8 378486', 'Kauppurienkatu 5', 'Oulu', '90100');
 
 'Ok place, but not great for takeout' '3 stars'
 Da Max is a restaurant in the heart of Kauppurienkatu, right next to Kauppuri5 restaurant. Da Max offers burgers, salads, kebabs, and pizzas, alongside many drinks and desserts. It has also nice small terrace area, which is great on a beautiful day. Food is mostly delicious, but restaurant may sometimes be crowded. 

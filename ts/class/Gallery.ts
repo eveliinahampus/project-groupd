@@ -30,13 +30,13 @@ class Gallery {
 
   #readJson(imagesAsJson: any): void {
     imagesAsJson.forEach((element) => {
-      const gallery_image: Image = new Image(
+      const image: Image = new Image(
         element.id,
         element.img_title,
         element.img_name,
         element.user_id
       );
-      this.images.push(gallery_image);
+      this.images.push(image);
     });
   }
 }

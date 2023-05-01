@@ -1,5 +1,5 @@
 INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city, zip code)
-VALUES ( 'restaurant3', 'Harald Oulu', '+358 44 766 8000', 'Kirkkokatu 16', 'Oulu', '90100');
+VALUES ( '3', 'Harald Oulu', '+358 44 766 8000', 'Kirkkokatu 16', 'Oulu', '90100');
 
 
 'Great Viking Feast or Luxurious Lunch' '5 stars'

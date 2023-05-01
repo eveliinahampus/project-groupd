@@ -18,18 +18,18 @@ gallery
     alert(error);
   });
 
-const renderImage = (image_from_db) => {
-  const images_div: HTMLDivElement = <HTMLDivElement>(
-    document.querySelector("#recommendations-container")
-  );
+const images_div: HTMLDivElement = <HTMLDivElement>(
+  document.querySelector("#recommendations-container")
+);
 
+const renderImage = (image_from_db) => {
   const imgDiv: HTMLDivElement = document.createElement("div");
   imgDiv.setAttribute("class", "col-lg-4 col-sm-6");
 
   const serviceDiv = document.createElement("div");
-  serviceDiv.setAttribute("class", "service card-effect");
+  serviceDiv.classList.add("service", "card-effect");
   serviceDiv.style.borderRadius = "5%"
-  serviceDiv.addEventListener("click", test)
+  // serviceDiv.addEventListener("click", test)
 
   const iconsDiv = document.createElement("div");
   iconsDiv.classList.add("icons","pb-2");
@@ -81,7 +81,7 @@ const renderImage = (image_from_db) => {
   const restaurantImage = document.createElement("img");
   restaurantImage.setAttribute("class", "restaurantImage img-fluid")
   restaurantImage.src = `http://localhost:3001/images/${image_from_db.img_name}`;
-  restaurantImage.alt = "Tasty dinner here!";
+  restaurantImage.alt = image_from_db.img_title
   serviceDiv.appendChild(restaurantImage);
 
   const restaurantName = document.createElement("h5");
