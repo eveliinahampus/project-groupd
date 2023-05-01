@@ -49,12 +49,9 @@ fetch("http://localhost:3001/api/restaurants")
       });
       for (let i = 0; i < 3 ; i++) {
         renderRestaurantCard(sortedRestaurant[i]);
+    
       }
 
-      //ここの関数をつくる！！
-      
-      //renderRestaurantIndex(restaurant_data[1]);
-      //renderReviewLatest(restaurant_data_index[1]);
     }
   })
   .catch((error) => console.log(error));
@@ -264,6 +261,12 @@ function renderRestaurantCard(restaurant_data_index: any) {
   // create div element with class "service card-effect"
   const divElement2 = document.createElement("div");
   divElement2.className = "service card-effect";
+  /////////////next target   add eventhandler
+  //const test =
+  //divElement2.addEventListener("click", () => { 
+  //console.log("clicked"+restaurant_data_index.id);
+  //});
+
 
   // create div element with class "icons"
   const divElement3 = document.createElement("div");
@@ -357,4 +360,11 @@ function renderRestaurantCard(restaurant_data_index: any) {
   if (parentElement) {
     parentElement.appendChild(divElement);
   }
+
+
+  ///////////////////////////////////next target   add eventhandler
+//function clickRestaurantCard(restaurant_data_index){
+  //console.log("clicked"+restaurant_data_index.id);
 }
+
+

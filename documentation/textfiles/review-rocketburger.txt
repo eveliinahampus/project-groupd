@@ -1,5 +1,5 @@
 INSERT INTO restaurants (id, restaurant_name, phone_number, street_address, city, zip code)
-VALUES (restaurant7, Rocker Burger Diner, +358 45 2639996, Kaplastie 2, Oulu, 90650);
+VALUES ('7', 'Rocker Burger Diner', '+358 45 2639996', 'Kaplastie 2', 'Oulu', '90650');
 
 'Follow-up for Lehtogrilli' '3 stars'
 Newer and more Americanized version of legendary Lehtogrilli. Food itself is very basic grill food, but entire interior design gives a very well thought concept of American diner. Very stylish and cozy on its own way. My toddler often loves to hug small boy statue at the entrance, greeting for incoming customers. Food is very basic, but tasty. I recommend to try their burgers, which are quite large in volume.
