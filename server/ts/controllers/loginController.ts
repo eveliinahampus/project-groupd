@@ -21,7 +21,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     // Create a JWT token
     const token = authorize.createToken(username);
     // Save token in a cookie
-    res.cookie("token", token, { httpOnly: true, maxAge: 86400000 });
+    res.cookie("token", token, { httpOnly: true, sameSite: true, secure: true, maxAge: 86400000 });
     // Login successful
     return res.json({ message: "Logged in successfully" });
     //next()
