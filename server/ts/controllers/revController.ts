@@ -59,7 +59,7 @@ const createReview = async (req: Request, res: Response) => {
     // Generate a unique filename for the uploaded image
     const fileTitle: string = file.name
     const name: string = `${Date.now()}-${file.name}`
-    const uploadPath: string = `./public/images/${name}`
+    const uploadPath: string = `./public/images/reviews/${name}`
 
     try {
       await file.mv(uploadPath)

@@ -29,7 +29,7 @@ const renderImage = (image_from_db) => {
   const serviceDiv = document.createElement("div");
   serviceDiv.classList.add("service", "card-effect");
   serviceDiv.style.borderRadius = "5%"
-  // serviceDiv.addEventListener("click", test)
+  serviceDiv.addEventListener("click", test)
 
   const iconsDiv = document.createElement("div");
   iconsDiv.classList.add("icons","pb-2");
@@ -80,7 +80,7 @@ const renderImage = (image_from_db) => {
 
   const restaurantImage = document.createElement("img");
   restaurantImage.setAttribute("class", "restaurantImage img-fluid")
-  restaurantImage.src = `http://localhost:3001/images/${image_from_db.img_name}`;
+  restaurantImage.src = `http://localhost:3001/images/reviews/${image_from_db.img_name}`;
   restaurantImage.alt = image_from_db.img_title
   serviceDiv.appendChild(restaurantImage);
 
@@ -117,6 +117,9 @@ function test() {
 }
 
 function renderRestaurant(restaurant_data:any) {
+
+  console.log(restaurant_data);
+  
   const sectionView = document.querySelector("#services")
   sectionView.innerHTML = ""
 
