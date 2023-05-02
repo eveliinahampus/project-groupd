@@ -7,3 +7,6 @@ server/js
 
 # Environment variables
 .env
+
+# Images for reviews
+server/public/images/reviews
