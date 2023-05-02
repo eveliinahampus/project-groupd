@@ -1,7 +1,11 @@
-<!-- PHP email function tutorial and template by  https://paperform.co/blog/html-contact-form/ 
+## PHP email function tutorial and template 
+
+by  https://paperform.co/blog/html-contact-form/.
 PHP file is hosted at https://groupd-contactform.000webhostapp.com/groupd/contact.php in order to work.
 
-This file is in github repo just for documentation purposes. -->
+This file is in github repo just for documentation purposes.
+
+```
 
 <?php
 if (isset($_POST['Email'])) {
@@ -78,3 +82,4 @@ if (isset($_POST['Email'])) {
 <?php
 }
 ?>
+   ```
