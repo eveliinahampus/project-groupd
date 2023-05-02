@@ -6,7 +6,7 @@ import revController from "./controllers/revController";
 import userController from "./controllers/userController";
 import imgController from "./controllers/imgController";
 import notFoundController from "./controllers/notFoundController";
-import loginController from "./controllers/loginController"
+import authController from "./controllers/authcontroller"
 
 // Create a new router object
 const router: Router = express.Router();
@@ -43,12 +43,10 @@ router
   .put("/api/reviews/update/:id", revController.updateReview)
   .delete("/api/reviews/delete/:id", revController.deleteReview)
 
-// Define login route
-router.post("/api/login", loginController.login);
-
-// Logout route - NOT IMPLEMENTED YET
-router.post("/api/logout", authenticate.verifyToken, loginController.logout);
-
+// Define routes for authentification
+router.post("/api/register")
+router.post("/api/login", authController.login);
+router.post("/api/logout", authenticate.verifyToken, authController.logout)
 // Define route for error 404 (resource not found)
 router.use("*", notFoundController.handle404Error);
 
