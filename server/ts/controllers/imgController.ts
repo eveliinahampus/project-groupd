@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import openDb from "../db_connect";
+import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
 const getAllImages = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   pool.query("select * from images", (err: Error, result: QueryResult) => {
     if (err) {
       res.statusMessage = err.message;
@@ -17,7 +15,6 @@ const getAllImages = async (req: Request, res: Response) => {
 
 // Retrieves image by given id
 const getImageById = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(
@@ -34,7 +31,6 @@ const getImageById = async (req: Request, res: Response) => {
 };
 
 const createImage = async (req: Request, res: Response) => {
-  let pool = openDb();
   let { name, title } = req.body;
 
   pool.query(
@@ -51,8 +47,6 @@ const createImage = async (req: Request, res: Response) => {
 };
 
 const updateImage = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   let id = parseInt(req.params.id);
   let { name, title } = req.body;
 
@@ -70,7 +64,6 @@ const updateImage = async (req: Request, res: Response) => {
 };
 
 const deleteImage = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(

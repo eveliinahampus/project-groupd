@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import authorize from "../middleware/authenticate";
-import openDb from "../db_connect";
+import { pool } from "../db_connect";
+
+const register = async (req: Request, res: Response) => {}
+
 
 const login = async (req: Request, res: Response, next: NextFunction) => {
   // This is to handle posted credentials and check if they are valid
@@ -12,7 +15,6 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     `Trying to log in with username: ${username}, email: ${email} and password: ${password}`
   );
   // Query the database to check if the user exists
-  const pool = openDb()
   const sql = "SELECT * FROM users WHERE username=$1 AND email=$2 AND password=$3"
 
   const result = await pool.query(sql,[username,email,password])
@@ -52,4 +54,4 @@ const logout = (req: Request, res: Response) => {
   res.json({ message: "Logged out successfully" });
 };
 
-export default { login, logout };
+export default { register, login, logout };

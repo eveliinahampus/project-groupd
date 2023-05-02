@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import openDb from "../db_connect";
+import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
 const getAllUsers = async (req: Request, res: Response) => {
-  let pool = openDb();
 
   const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u;"
 
@@ -18,7 +17,6 @@ const getAllUsers = async (req: Request, res: Response) => {
 
 // Retrieves User by given id
 const getUserById = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u WHERE u.id = $1;"
@@ -37,7 +35,6 @@ const getUserById = async (req: Request, res: Response) => {
 };
 
 const createUser = async (req: Request, res: Response) => {
-  let pool = openDb();
   let { username, email, password } = req.body;
 
   pool.query(
@@ -54,8 +51,6 @@ const createUser = async (req: Request, res: Response) => {
 };
 
 const updateUser = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   let id = parseInt(req.params.id);
   let { name, email, password } = req.body;
 
@@ -73,7 +68,6 @@ const updateUser = async (req: Request, res: Response) => {
 };
 
 const deleteUser = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(
