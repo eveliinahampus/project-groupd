@@ -2,6 +2,12 @@ import { Gallery } from "./class/Gallery.js";
 import { Image } from "./class/Image.js";
 
 
+const BACKEND_ROOT_URL_IMAGES = "http://localhost:3001/api/images";
+
+const gallery: Gallery = new Gallery(BACKEND_ROOT_URL_IMAGES);
+
+
+
 
 
 let reviews_data_index = [];
@@ -28,6 +34,7 @@ fetch("http://localhost:3001/api/reviews")
       }).reverse();
       for (let i = 0; i < 6; i++) {
         renderReviewCard(sortedReviews[i]);
+
       }
     }
     
@@ -56,7 +63,7 @@ fetch("http://localhost:3001/api/restaurants")
       });
       for (let i = 0; i < 3 ; i++) {
         renderRestaurantCard(sortedRestaurant[i]);
-        renderImage
+      
       }
 
     }
@@ -112,7 +119,45 @@ function renderReviewCard(reviews_data_index: any) {
 
   const imgElement = document.createElement("img");
   imgElement.setAttribute("id","reviewImage");
-  //imgElement.src = "./server/public/images/breads.jpg";
+
+
+
+
+ // const targetIdImage = reviews_data_index.images_id;
+//console.log("----targetIdImage",targetIdImage);
+
+  gallery
+  .getImages()
+  .then((images: Array<Image>) => {
+    images.forEach((image) => {
+      //renderImage(image);
+
+
+//if image.id = targetIdImage,
+if(image.id === reviews_data_index.images_id){
+      console.log("imageId !!", image.id, image.img_name);
+      imgElement.src = `http://localhost:3001/images/${image.img_name}`
+
+      // const renderImage = (image) => {
+      //   imgElement.src = `http://localhost:3001/api/images/${image.img_name}`
+      // }
+    }
+        const targetIdImage = reviews_data_index.images_id;
+        console.log("----targetIdImage",targetIdImage);
+    });
+  })
+  .catch((error) => {
+    alert(error);
+  });
+
+//const images_div: HTMLImageElement = <HTMLImageElement>(
+ // document.querySelector("#reviewImage")
+//);
+
+   
+
+  imgElement.src = "./server/public/images/breads.jpg";
+  //imgElement.src = `http://localhost:3001/api/images/${image.img_name}`
   imgElement.alt = "food";
 
   // create div element with class "beforeoverlay"
@@ -376,26 +421,4 @@ function renderRestaurantCard(restaurant_data_index: any) {
 }
 
 
-const BACKEND_ROOT_URL_IMAGES = "http://localhost:3001/api/images";
-
-const gallery: Gallery = new Gallery(BACKEND_ROOT_URL_IMAGES);
-
-gallery
-  .getImages()
-  .then((images: Array<Image>) => {
-    images.forEach((image) => {
-      renderImage(image);
-    });
-  })
-  .catch((error) => {
-    alert(error);
-  });
-
-const images_div: HTMLImageElement = <HTMLImageElement>(
-  document.querySelector("#reviewImage")
-);
-
-const renderImage = (image_from_db) => {
-images_div.src = `http://localhost:3001/api/images/${image_from_db.image_name}`
-}
 
