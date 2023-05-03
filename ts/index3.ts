@@ -123,7 +123,7 @@ function renderReviewCard(reviews_data_index: any) {
 
 
   //////////////////imgElement.src = "./server/public/images/breads.jpg";
-  imgElement.src = `http://localhost:3001/images/${reviews_data_index.image_name}`
+  imgElement.src = `http://localhost:3001/images/reviews/${reviews_data_index.image_name}`
   imgElement.alt = "food";
 
   // create div element with class "beforeoverlay"
