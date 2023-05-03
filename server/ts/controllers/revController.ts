@@ -42,7 +42,7 @@ const createReview = async (req: Request, res: Response) => {
   const title = req.body.review_title
   const body = req.body.review_body.replace(/[\r\n]/g," ")
   const parsedStars = parseInt(req.body.stars);
-  const parsedRestaurant_id = parseInt(req.body.restaurant_id);
+  const restaurant_name = req.body.restaurant_name
   const username = req.body.username;
   
   const file = req.files?.image as UploadedFile
@@ -54,13 +54,20 @@ const createReview = async (req: Request, res: Response) => {
   );
   const userId = userIdResult.rows[0].id
 
+  // Get restaurant id fro given restaurant name
+  const restaurantIdResult = await pool.query(
+    "select id from restaurants where restaurant_name = $1",
+    [restaurant_name]
+  );
+  const restaurantId = restaurantIdResult.rows[0].id
+
   if (!file) {
     try {
       
     const sql = "insert into reviews (review_title,review_body,stars,restaurant_id,user_id) values ($1,$2,$3,$4,$5) returning *"
     const result = await (pool.query(
       sql,
-      [title, body, parsedStars, parsedRestaurant_id, userId]))
+      [title, body, parsedStars, restaurantId, userId]))      
       res.status(200).json(result.rows)
     } catch (err: any) {
       return res.status(500).json({ err: err.message })
@@ -69,8 +76,8 @@ const createReview = async (req: Request, res: Response) => {
     // Handle file upload
     // Generate a unique filename for the uploaded image
     const fileTitle: string = file.name
-    const name: string = `${Date.now()}-${file.name}`
-    const uploadPath: string = `./public/images/reviews/${name}`
+    const fileName: string = `${Date.now()}-${file.name}`
+    const uploadPath: string = `./public/images/reviews/${fileName}`
 
     try {
       await file.mv(uploadPath)
@@ -78,13 +85,13 @@ const createReview = async (req: Request, res: Response) => {
       // Insert the image record into the database
       const imageIdResult = await pool.query(
         "INSERT INTO images (img_title, img_name, user_id) VALUES ($1, $2, $3) RETURNING id",
-        [fileTitle, name, userId]
+        [fileTitle, fileName, userId]
       );
       const imageId = imageIdResult.rows[0].id;
 
       // Insert the review with image_id record into the database
       const reviewSql = "insert into reviews (review_title,review_body,stars,restaurant_id,user_id,images_id) values ($1,$2,$3,$4,$5,$6) returning *"
-      const result = await pool.query(reviewSql,[title, body, parsedStars, parsedRestaurant_id, userId, imageId])
+      const result = await pool.query(reviewSql,[title, body, parsedStars, restaurantId, userId, imageId])      
       res.status(200).json(result.rows)
     
     } catch (err: any) {
