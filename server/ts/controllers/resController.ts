@@ -5,8 +5,14 @@ import { QueryResult } from "pg";
 
 // Retrieves all the restaurants in the database
 const getAllRestaurants = async (req: Request, res: Response) => {
-  // const sql = "select * from restaurants"
-  const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r;"
+  const sql = `SELECT restaurant_name,phone_number,street_address,city,zip_code,
+  (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars,
+  (SELECT username FROM users WHERE users.id = r.user_id) AS username,
+  (SELECT img_name FROM images WHERE images.id = r.images_id) AS image_name,
+  created_at,
+  (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews
+  FROM restaurants r`
+  // const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r;"
 
   // Query the database to retrieve all the restaurants
   pool.query(sql, (err: Error, result: QueryResult) => {
@@ -91,22 +97,6 @@ const createRestaurant = async (req: Request, res: Response) => {
         return res.status(500).json({ err: err.message });
       }
   }
-
-
-
-  // pool.query(
-  //   ",
-  //   [restaurant_name, phone, address, city, zip_code],
-  //   (err: Error, result: QueryResult) => {
-  //     if (err) {
-  //       res.status(500).json({ err: err.message });
-  //       console.log(req.body);
-        
-  //       return;
-  //     }
-  //     res.status(200).json({ id: result.rows[0].id });
-  //   }
-  // );
 };
 
 // Update an existing restaurant's infomation in the database
