@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
 import { UploadedFile } from "express-fileupload";
-import openDb from "../db_connect";
+import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
 const getAllReviews = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   pool.query("select * from reviews", (err: Error, result: QueryResult) => {
     if (err) {
       res.status(500).json({ err: err.message });
@@ -17,7 +15,6 @@ const getAllReviews = async (req: Request, res: Response) => {
 
 // Retrieves review by given id
 const getReviewById = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(
@@ -34,8 +31,6 @@ const getReviewById = async (req: Request, res: Response) => {
 };
 
 const createReview = async (req: Request, res: Response) => {
-  const pool = openDb();
-
   const title = req.body.review_title
   const body = req.body.review_body.replace(/[\r\n]/g," ")
   const parsedStars = parseInt(req.body.stars);
@@ -59,7 +54,7 @@ const createReview = async (req: Request, res: Response) => {
     // Generate a unique filename for the uploaded image
     const fileTitle: string = file.name
     const name: string = `${Date.now()}-${file.name}`
-    const uploadPath: string = `./public/images/${name}`
+    const uploadPath: string = `./public/images/reviews/${name}`
 
     try {
       await file.mv(uploadPath)
@@ -91,8 +86,6 @@ const createReview = async (req: Request, res: Response) => {
   
 
 const updateReview = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   let title = req.body.review_title
   let body = req.body.review_body
   let parsedStars = parseInt(req.body.stars);
@@ -113,7 +106,6 @@ const updateReview = async (req: Request, res: Response) => {
 };
 
 const deleteReview = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(

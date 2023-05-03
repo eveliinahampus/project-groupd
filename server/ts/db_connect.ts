@@ -18,4 +18,5 @@ const openDb = (): Pool => {
   return pool;
 };
 
-export default openDb;
+// Connect to the database
+export const pool = openDb();

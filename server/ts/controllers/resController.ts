@@ -1,15 +1,11 @@
 import { Request, Response } from "express";
-import openDb from "../db_connect";
+import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
 // Retrieves all the restaurants in the database
 const getAllRestaurants = async (req: Request, res: Response) => {
-  // Connect to the database
-  let pool = openDb();
-
   // const sql = "select * from restaurants"
   const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r;"
-
 
   // Query the database to retrieve all the restaurants
   pool.query(sql, (err: Error, result: QueryResult) => {
@@ -25,9 +21,7 @@ const getAllRestaurants = async (req: Request, res: Response) => {
 
 // Retrieves restaurant by given id
 const getRestaurantById = async (req: Request, res: Response) => {
-  // Connect to the database
   const sql = "SELECT r.*, (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars, (SELECT json_agg(reviews) FROM reviews WHERE reviews.restaurant_id = r.id) AS reviews FROM restaurants r WHERE r.id = $1;"
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   // Query the database to retrieve all the restaurants
@@ -49,7 +43,6 @@ const getRestaurantById = async (req: Request, res: Response) => {
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
-  let pool = openDb();
   let { name, phone_number, street_address, city, zip_code } =
     req.body;
 
@@ -68,8 +61,6 @@ const createRestaurant = async (req: Request, res: Response) => {
 
 // Update an existing restaurant's infomation in the database
 const updateRestaurant = async (req: Request, res: Response) => {
-  let pool = openDb();
-
   let id = parseInt(req.params.id);
   let { name,phone_number,street_address,city,zip_code } = req.body;
 
@@ -88,7 +79,6 @@ const updateRestaurant = async (req: Request, res: Response) => {
 
 // Delete an existing restaurant from the database
 const deleteRestaurant = async (req: Request, res: Response) => {
-  let pool = openDb();
   let id = parseInt(req.params.id);
 
   pool.query(

@@ -7,9 +7,9 @@ const users: User_Collection = new User_Collection(BACKEND_ROOT_URL);
 
 users
   .getUsers()
-  .then((restaurants: Array<User>) => {
-    restaurants.forEach((restaurant) => {
-      renderUser(restaurant);
+  .then((users: Array<User>) => {
+    users.forEach((user) => {
+      renderUser(user);
     });
   })
   .catch((error) => {
