@@ -1,10 +1,10 @@
-import { Gallery } from "./class/Gallery.js";
-import { Image } from "./class/Image.js";
+// import { Gallery } from "./class/Gallery.js";
+// import { Image } from "./class/Image.js";
 
 
-const BACKEND_ROOT_URL_IMAGES = "http://localhost:3001/api/images";
+// const BACKEND_ROOT_URL_IMAGES = "http://localhost:3001/api/images";
 
-const gallery: Gallery = new Gallery(BACKEND_ROOT_URL_IMAGES);
+// const gallery: Gallery = new Gallery(BACKEND_ROOT_URL_IMAGES);
 
 
 
@@ -122,43 +122,8 @@ function renderReviewCard(reviews_data_index: any) {
 
 
 
-
- // const targetIdImage = reviews_data_index.images_id;
-//console.log("----targetIdImage",targetIdImage);
-
-  gallery
-  .getImages()
-  .then((images: Array<Image>) => {
-    images.forEach((image) => {
-      //renderImage(image);
-
-
-//if image.id = targetIdImage,
-if(image.id === reviews_data_index.images_id){
-      console.log("imageId !!", image.id, image.img_name);
-      ///////////////////imgElement.src = `http://localhost:3001/images/${image.img_name}`
-
-
-      // const renderImage = (image) => {
-      //   imgElement.src = `http://localhost:3001/images/${image.img_name}`
-      // }
-    }
-        const targetIdImage = reviews_data_index.images_id;
-        console.log("----targetIdImage",targetIdImage);
-    });
-  })
-  .catch((error) => {
-    alert(error);
-  });
-
-//const images_div: HTMLImageElement = <HTMLImageElement>(
- // document.querySelector("#reviewImage")
-//);
-
-   
-
-  imgElement.src = "./server/public/images/breads.jpg";
-  //imgElement.src = `http://localhost:3001/api/images/${image.img_name}`
+  //////////////////imgElement.src = "./server/public/images/breads.jpg";
+  imgElement.src = `http://localhost:3001/images/${reviews_data_index.image_name}`
   imgElement.alt = "food";
 
   // create div element with class "beforeoverlay"
@@ -246,23 +211,23 @@ if(image.id === reviews_data_index.images_id){
   divElement2.appendChild(divElement3);
   divElement2.appendChild(divElement5);
 
-  // restaurant name
+//   // restaurant name
 
-  const targetId = reviews_data_index.restaurant_id;
-  console.log(targetId);
+//   const targetId = reviews_data_index.restaurant_id;
+//   console.log(targetId);
 
-  // IDがtargetIdと一致するオブジェクトを抽出する
-  const filteredObjects = restaurant_data_index.filter(
-    (restaurant_data_index) => restaurant_data_index.id === targetId
-  );
+//   // IDがtargetIdと一致するオブジェクトを抽出する
+//   const filteredObjects = restaurant_data_index.filter(
+//     (restaurant_data_index) => restaurant_data_index.id === targetId
+//   );
 
-  // 抽出したオブジェクトを出力する
-  console.log("----!!!restname", filteredObjects[0].restaurant_name);
+//   // 抽出したオブジェクトを出力する
+//   console.log("----!!!restname", filteredObjects[0].restaurant_name);
 
   //DOM　 <h4 class="overlay">restaurant name</h4>
   const h4Element5 = document.createElement("h4");
   h4Element5.className = "overlay";
-  h4Element5.textContent = `${filteredObjects[0].restaurant_name}`;
+  h4Element5.textContent = `${reviews_data_index.restaurant_name}`;
   //change color to
   h4Element5.style.color = "#EB6440";
 
