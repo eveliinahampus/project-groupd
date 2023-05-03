@@ -5,7 +5,7 @@ import { QueryResult } from "pg";
 
 // Retrieves all the restaurants in the database
 const getAllRestaurants = async (req: Request, res: Response) => {
-  const sql = `SELECT restaurant_name,phone_number,street_address,city,zip_code,
+  const sql = `SELECT id,restaurant_name,phone_number,street_address,city,zip_code,
   (SELECT AVG(stars)::numeric(10,1) FROM reviews WHERE restaurant_id = r.id) AS average_stars,
   (SELECT username FROM users WHERE users.id = r.user_id) AS username,
   (SELECT img_name FROM images WHERE images.id = r.images_id) AS image_name,
@@ -19,7 +19,7 @@ const getAllRestaurants = async (req: Request, res: Response) => {
     if (err) {
       // Handle errors and return an error response
       res.status(500).json({ err: err.message });
-      return;
+      return
     }
     // Return the retrieved restaurants as a success response
     res.status(200).json(result.rows);
@@ -51,7 +51,6 @@ const getRestaurantById = async (req: Request, res: Response) => {
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
   const { username, email, restaurant_name, phone, address, city, zip_code } = req.body;
-  console.log(req.body);
   const file = req.files?.image as UploadedFile
 
   // Get user id fro given username
