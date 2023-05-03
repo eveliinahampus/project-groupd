@@ -14,7 +14,7 @@ const router: Router = express.Router();
 // Define routes for images
 router
   .get("/api/images", imgController.getAllImages)
-  .post("/api/images", imgController.createImage)
+  // .post("/api/images", imgController.createImage)
   .get("/api/images/:id", imgController.getImageById)
   .put("/api/images/update/:id", imgController.updateImage)
   .delete("/api/images/delete/:id", imgController.deleteImage);
@@ -22,7 +22,7 @@ router
 // Define routes for restaurants
 router
   .get("/api/restaurants", resController.getAllRestaurants)
-  .post("/api/restaurants", resController.createRestaurant)
+  .post("/api/restaurants", fileUpload(),resController.createRestaurant)
   .get("/api/restaurants/:id", resController.getRestaurantById)
   .put("/api/restaurants/update/name/:id", resController.updateRestaurant)
   .delete("/api/restaurants/delete/:id", resController.deleteRestaurant);
