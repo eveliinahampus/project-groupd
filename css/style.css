@@ -189,6 +189,10 @@ img{
 }
 .recommendation img{
     transition: all 0.4s ease;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    
 }
 
 .recommendation:hover .overlay{

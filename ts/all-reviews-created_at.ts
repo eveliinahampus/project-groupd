@@ -71,7 +71,7 @@ function renderReviewCard2(reviews_data_index: any) {
 
   // create div element with class "col-lg-4 col-sm-6"
   const divElement = document.createElement("div");
-  divElement.className = "col-lg-4 col-sm-6";
+  divElement.className = "col-lg-3 col-sm-4";
 
   // create div element with class "recommendation"
   const divElement2 = document.createElement("div");
