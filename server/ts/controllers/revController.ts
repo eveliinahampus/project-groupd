@@ -45,15 +45,16 @@ const createReview = async (req: Request, res: Response) => {
   
   const file = req.files?.image as UploadedFile
 
+  // Get user id fro given username
+  const userIdResult = await pool.query(
+    "select id from users where username = $1",
+    [username]
+  );
+  const userId = userIdResult.rows[0].id
+
   if (!file) {
     try {
-      // Get user id fro given username
-      const userIdResult = await pool.query(
-        "select id from users where username = $1",
-        [username]
-      );
-    const userId = parseInt(userIdResult.rows[0].id)
-
+      
     const sql = "insert into reviews (review_title,review_body,stars,restaurant_id,user_id) values ($1,$2,$3,$4,$5) returning *"
     const result = await (pool.query(
       sql,
@@ -72,13 +73,6 @@ const createReview = async (req: Request, res: Response) => {
     try {
       await file.mv(uploadPath)
 
-      // Get user id fro given username
-      const userIdResult = await pool.query(
-          "select id from users where username = $1",
-          [username]
-        );
-      const userId = userIdResult.rows[0].id;
-
       // Insert the image record into the database
       const imageIdResult = await pool.query(
         "INSERT INTO images (img_title, img_name, user_id) VALUES ($1, $2, $3) RETURNING id",
@@ -87,8 +81,8 @@ const createReview = async (req: Request, res: Response) => {
       const imageId = imageIdResult.rows[0].id;
 
       // Insert the review with image_id record into the database
-      const reviewSql = "insert into reviews (review_title,review_body,stars,restaurant_id,username,images_id) values ($1,$2,$3,$4,$5,$6) returning *"
-      const result = await pool.query(reviewSql,[title, body, parsedStars, parsedRestaurant_id, username, imageId])
+      const reviewSql = "insert into reviews (review_title,review_body,stars,restaurant_id,user_id,images_id) values ($1,$2,$3,$4,$5,$6) returning *"
+      const result = await pool.query(reviewSql,[title, body, parsedStars, parsedRestaurant_id, userId, imageId])
       res.status(200).json(result.rows)
     
     } catch (err: any) {

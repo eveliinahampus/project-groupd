@@ -4,7 +4,7 @@ import { QueryResult } from "pg";
 
 const getAllUsers = async (req: Request, res: Response) => {
 
-  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.username = u.username) AS reviews FROM users u;"
+  const sql = "SELECT u.*, (SELECT json_agg(reviews) FROM reviews WHERE reviews.user_id = u.id) AS reviews FROM users u;"
 
   pool.query(sql, (err: Error, result: QueryResult) => {
     if (err) {

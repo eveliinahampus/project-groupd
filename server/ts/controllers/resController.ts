@@ -44,17 +44,23 @@ const getRestaurantById = async (req: Request, res: Response) => {
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
-  const {  email, name, phone, address, city, zip_code } = req.body;
-  const username = req.body.username
+  const { username, email, name, phone, address, city, zip_code } = req.body;
   console.log(req.body);
   const file = req.files?.image as UploadedFile
 
+  // Get user id fro given username
+  const userIdResult = await pool.query(
+    "select id from users where username = $1",
+    [username]
+  );
+  const userId = userIdResult.rows[0].id;
+
   if (!file) {
     try {
-      const sql = `insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *`
+      const sql = `insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code, user_id) values ($1, $2, $3, $4, $5, $6) returning *`
       const result = await (pool.query(
         sql,
-        [name,phone,address,city,zip_code]))
+        [name,phone,address,city,zip_code,userId]))
         res.status(200).json(result.rows)
     } catch (err: any) {
       return res.status(500).json({ err: err.message })
@@ -68,13 +74,6 @@ const createRestaurant = async (req: Request, res: Response) => {
 
       try {
         await file.mv(uploadPath)
-
-        // Get user id fro given username
-        const userIdResult = await pool.query(
-            "select id from users where username = $1",
-            [username]
-          );
-        const userId = userIdResult.rows[0].id;
 
         // Insert the image record into the database
         const imageIdResult = await pool.query(
