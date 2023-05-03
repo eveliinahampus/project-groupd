@@ -5,9 +5,11 @@ import { QueryResult } from "pg";
 
 const getAllReviews = async (req: Request, res: Response) => {
   
-  const sql = `select review_title,review_body,stars,created_at,
+  const sql = `select review_title,review_body,stars,
   (select restaurant_name from restaurants where reviews.restaurant_id = restaurants.id) as restaurant_name,
-  (select img_name from images where reviews.images_id = images.id) as image_name
+  (select username from users where reviews.user_id = users.id) as username,
+  (select img_name from images where reviews.images_id = images.id) as image_name,
+  created_at
   from reviews`
 
   pool.query(sql, (err: Error, result: QueryResult) => {
