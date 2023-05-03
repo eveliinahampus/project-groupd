@@ -69,7 +69,7 @@ const createRestaurant = async (req: Request, res: Response) => {
       // Handle file upload
       // Generate a unique filename for the uploaded image
       const fileTitle: string = file.name
-      const name: string = `${Date.now()}-${file.name}`
+      const fileName: string = `${Date.now()}-${file.name}`
       const uploadPath: string = `./public/images/restaurants/${name}`
 
       try {
@@ -78,7 +78,7 @@ const createRestaurant = async (req: Request, res: Response) => {
         // Insert the image record into the database
         const imageIdResult = await pool.query(
           "INSERT INTO images (img_title, img_name, user_id) VALUES ($1, $2, $3) RETURNING id",
-          [fileTitle, name, userId]
+          [fileTitle, fileName, userId]
         );
         const imageId = imageIdResult.rows[0].id;
 
