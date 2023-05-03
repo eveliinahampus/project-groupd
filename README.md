@@ -36,18 +36,19 @@ This site is deployed via Github Pages in <a href="https://t2haev00.github.io/pr
    ```sh
    git clone https://github.com/t2haev00/project-groupd.git
    ```
+2. Add JS folders for main and server folder for compiled Javascript. See <a href="https://github.com/t2haev00/project-groupd/blob/main/.gitignore">.gitignore</a> file for hidden folders.
    
-2. Move to the server directory:
+3. Move to the server directory:
    ```sh
    cd server/
    ```
    
-3. Install node dependencies:
+4. Install node dependencies:
    ```sh
    npm i
    ```
    
-4. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace variable placeholders with the correct values for your database.
+5. In the server directory, open **sample.env** and copy its content into a new file named **.env**, then replace variable placeholders with the correct values for your database.
 
 ### Compile TypeScript code for the server and front-end
 Run the following comand in the server and root directory:
