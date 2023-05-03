@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { UploadedFile } from "express-fileupload";
 import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
@@ -43,20 +44,70 @@ const getRestaurantById = async (req: Request, res: Response) => {
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
-  let { name, phone_number, street_address, city, zip_code } =
-    req.body;
+  const {  email, name, phone, address, city, zip_code } = req.body;
+  const username = req.body.username
+  console.log(req.body);
+  const file = req.files?.image as UploadedFile
 
-  pool.query(
-    "insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *",
-    [name, phone_number, street_address, city, zip_code],
-    (err: Error, result: QueryResult) => {
-      if (err) {
-        res.status(500).json({ err: err.message });
-        return;
-      }
-      res.status(200).json({ id: result.rows[0].id });
+  if (!file) {
+    try {
+      const sql = `insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code) values ($1, $2, $3, $4, $5) returning *`
+      const result = await (pool.query(
+        sql,
+        [name,phone,address,city,zip_code]))
+        res.status(200).json(result.rows)
+    } catch (err: any) {
+      return res.status(500).json({ err: err.message })
     }
-  );
+  } else {
+      // Handle file upload
+      // Generate a unique filename for the uploaded image
+      const fileTitle: string = file.name
+      const name: string = `${Date.now()}-${file.name}`
+      const uploadPath: string = `./public/images/restaurants/${name}`
+
+      try {
+        await file.mv(uploadPath)
+
+        // Get user id fro given username
+        const userIdResult = await pool.query(
+            "select id from users where username = $1",
+            [username]
+          );
+        const userId = userIdResult.rows[0].id;
+
+        // Insert the image record into the database
+        const imageIdResult = await pool.query(
+          "INSERT INTO images (img_title, img_name, user_id) VALUES ($1, $2, $3) RETURNING id",
+          [fileTitle, name, userId]
+        );
+        const imageId = imageIdResult.rows[0].id;
+
+        // Insert the restaurant with image_id record into the database
+        const restaurantSql = "insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code, user_id, images_id) values ($1,$2,$3,$4,$5,$6,$7) returning *"
+        const result = await pool.query(restaurantSql, [name, phone, address, city, zip_code, userId, imageId])
+        res.status(200).json(result.rows)
+      
+      } catch (err: any) {
+        return res.status(500).json({ err: err.message });
+      }
+  }
+
+
+
+  // pool.query(
+  //   ",
+  //   [name, phone, address, city, zip_code],
+  //   (err: Error, result: QueryResult) => {
+  //     if (err) {
+  //       res.status(500).json({ err: err.message });
+  //       console.log(req.body);
+        
+  //       return;
+  //     }
+  //     res.status(200).json({ id: result.rows[0].id });
+  //   }
+  // );
 };
 
 // Update an existing restaurant's infomation in the database

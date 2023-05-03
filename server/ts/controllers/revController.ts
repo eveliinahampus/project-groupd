@@ -47,11 +47,18 @@ const createReview = async (req: Request, res: Response) => {
 
   if (!file) {
     try {
-      const sql = "insert into reviews (review_title,review_body,stars,restaurant_id,username) values ($1,$2,$3,$4,$5) returning *"
-      const result = await (pool.query(
-        sql,
-        [title, body, parsedStars, parsedRestaurant_id, username]))
-        res.status(200).json(result.rows)
+      // Get user id fro given username
+      const userIdResult = await pool.query(
+        "select id from users where username = $1",
+        [username]
+      );
+    const userId = parseInt(userIdResult.rows[0].id)
+
+    const sql = "insert into reviews (review_title,review_body,stars,restaurant_id,user_id) values ($1,$2,$3,$4,$5) returning *"
+    const result = await (pool.query(
+      sql,
+      [title, body, parsedStars, parsedRestaurant_id, userId]))
+      res.status(200).json(result.rows)
     } catch (err: any) {
       return res.status(500).json({ err: err.message })
     }
