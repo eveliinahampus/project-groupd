@@ -32,7 +32,7 @@ class Restaurant_Collection {
     restaurantsAsJson.forEach((element) => {
       const restaurants: Restaurant = new Restaurant(
         element.id,
-        element.name,
+        element.restaurant_name,
         element.phone_number,
         element.street_address,
         element.city,

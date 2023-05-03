@@ -63,7 +63,7 @@ fetch("http://localhost:3001/api/restaurants")
 
 //DOM
 const parentID3 = "latestReview";
-function renderReviewCard(reviews_data_index: any) {
+function renderReviewCard(reviews_data_index) {
   if (!reviews_data_index) return; // checking null
 
   // create div element with class "col-lg-4 col-sm-6"
@@ -82,7 +82,7 @@ function renderReviewCard(reviews_data_index: any) {
 
 
 
-  //////////////////imgElement.src = "./server/public/images/breads.jpg";
+  // imgElement.src = "./server/public/images/breads.jpg";
   imgElement.src = `http://localhost:3001/images/reviews/${reviews_data_index.image_name}`
   imgElement.alt = "food";
 
@@ -194,7 +194,13 @@ function renderReviewCard(reviews_data_index: any) {
 //DOM
 const parentID4 = "top3";
 function renderRestaurantCard(restaurant_data_index: any) {
-  if (!reviews_data_index) return; // checking null
+  if (!reviews_data_index) {
+    return;
+  } else { 
+  
+
+  
+  // checking null
 
 //DOM
 // <div class="col-lg-4 col-sm-6">
@@ -293,7 +299,7 @@ function renderRestaurantCard(restaurant_data_index: any) {
   // create img element with class "restaurantImage img-fluid mt-3" and src
   const imgElement = document.createElement("img");
   imgElement.className = "restaurantImage img-fluid mt-3";
-  imgElement.src = "http://localhost:3001/images/restaurants/${restaurant_data_index.image_name}";
+  imgElement.src = `http://localhost:3001/images/restaurants/${restaurant_data_index.image_name}`
   imgElement.alt = "food";
 
   // create h5 element with class "mt-4 mb-2" and text content "Cafe Rooster"
@@ -332,6 +338,4 @@ function renderRestaurantCard(restaurant_data_index: any) {
 //function clickRestaurantCard(restaurant_data_index){
   //console.log("clicked"+restaurant_data_index.id);
 }
-
-
-
+}
