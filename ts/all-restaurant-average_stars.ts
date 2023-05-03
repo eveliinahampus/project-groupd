@@ -46,11 +46,33 @@ function renderRestaurantCard3(restaurant_data_alls: any) {
   // create div element with class "service card-effect"
   const divElement2 = document.createElement("div");
   divElement2.className = "service card-effect";
-  /////////////next target   add eventhandler
-  //const test =
-  //divElement2.addEventListener("click", () => { 
-  //console.log("clicked"+restaurant_data_index.id);
-  //});
+  
+  
+  //add eventhandler for jumping one restaurant information with all reviews about the restaurant
+  const test =
+  divElement2.addEventListener("click", () => { 
+     console.log("clicked"+restaurant_data_alls.id);
+
+    //destoroy the corrent page
+    document.querySelector("body").innerHTML = "";
+
+    //dom for restaurant detail page
+
+    
+
+    const restaurantDetail = document.createElement("div");
+
+
+
+
+  });
+
+
+
+
+ 
+
+
 
 
   // create div element with class "icons"
