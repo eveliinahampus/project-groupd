@@ -4,7 +4,13 @@ import { pool } from "../db_connect";
 import { QueryResult } from "pg";
 
 const getAllReviews = async (req: Request, res: Response) => {
-  pool.query("select * from reviews", (err: Error, result: QueryResult) => {
+  
+  const sql = `select review_title,review_body,stars, 
+  (select restaurant_name from restaurants where reviews.restaurant_id = restaurants.id) as restaurant_name,
+  (select img_name from images where reviews.images_id = images.id) as image_name
+  from reviews`
+
+  pool.query(sql, (err: Error, result: QueryResult) => {
     if (err) {
       res.status(500).json({ err: err.message });
       return;
