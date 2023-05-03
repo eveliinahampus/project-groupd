@@ -13,7 +13,7 @@ addRestaurantBtn.addEventListener('click', () => {
 
   // Set new values for the headings
   h6Content.innerText = "Add the restaurant's details below"
-  h1Content.innerText = "NEW RESTAURANT"
+  h1Content.innerText = "New restaurant?"
 
   // Set new attributes for name input
   restaurantNameInput.setAttribute("name","name")
