@@ -39,9 +39,9 @@ function renderRestaurantCard3(restaurant_data_alls: any) {
   if (!restaurant_data_alls) return; // checking null
 
 
-  // create div element with class "col-lg-4 col-sm-6"
+  // create div element with class "col-lg-3 col-sm-4"
   const divElement = document.createElement("div");
-  divElement.className = "col-lg-4 col-sm-6";
+  divElement.className = "col-lg-3 col-sm-4";
 
   // create div element with class "service card-effect"
   const divElement2 = document.createElement("div");
@@ -67,7 +67,7 @@ function renderRestaurantCard3(restaurant_data_alls: any) {
 
   // create i element with class "bi bi-star-fill"
   const iElement = document.createElement("i");
-  iElement.className = "bi bi-star-fill";
+  iElement.className = "mx-2 bi bi-star-fill";
 
   // create h5 element with text content "4.5"
   const h5Element = document.createElement("h5");
@@ -87,7 +87,7 @@ function renderRestaurantCard3(restaurant_data_alls: any) {
 
   // create i element with class "bi bi-chat-left-dots"
   const iElement2 = document.createElement("i");
-  iElement2.className = "bi bi-chat-left-dots";
+  iElement2.className = "mx-2 bi bi-chat-left-dots";
   
   // create h6 element with text content total reviews number
   const h6Element = document.createElement("h6");
