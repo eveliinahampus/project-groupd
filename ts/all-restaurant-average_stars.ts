@@ -19,8 +19,8 @@ fetch("http://localhost:3001/api/restaurants")
       const sortedRestaurant = restaurant_data_alls.sort((a, b) => {
         return b.average_stars - a.average_stars;
       });
-      for (let i = 0; i < 3 ; i++) {
-        renderRestaurantCard(sortedRestaurant[i]);
+      for (let i = 0; restaurant_data_alls.length ; i++) {
+        renderRestaurantCard3(sortedRestaurant[i]);
       
       }
 
