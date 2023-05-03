@@ -123,7 +123,7 @@ function renderReviewCard(reviews_data_index: any) {
 
 
   //////////////////imgElement.src = "./server/public/images/breads.jpg";
-  imgElement.src = `http://localhost:3001/images/${reviews_data_index.image_name}`
+  imgElement.src = `http://localhost:3001/images/reviews/${reviews_data_index.image_name}`
   imgElement.alt = "food";
 
   // create div element with class "beforeoverlay"
@@ -346,7 +346,7 @@ function renderRestaurantCard(restaurant_data_index: any) {
   // create img element with class "restaurantImage img-fluid mt-3" and src
   const imgElement = document.createElement("img");
   imgElement.className = "restaurantImage img-fluid mt-3";
-  imgElement.src = "../server/public/images/pizza.jpg";
+  imgElement.src = "http://localhost:3001/images/restaurants/${restaurant_data_index.image_name}";
   imgElement.alt = "food";
 
   // create h5 element with class "mt-4 mb-2" and text content "Cafe Rooster"
