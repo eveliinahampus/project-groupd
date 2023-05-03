@@ -44,7 +44,7 @@ const getRestaurantById = async (req: Request, res: Response) => {
 
 // Adds a new restaurant to the database
 const createRestaurant = async (req: Request, res: Response) => {
-  const { username, email, name, phone, address, city, zip_code } = req.body;
+  const { username, email, restaurant_name, phone, address, city, zip_code } = req.body;
   console.log(req.body);
   const file = req.files?.image as UploadedFile
 
@@ -60,7 +60,7 @@ const createRestaurant = async (req: Request, res: Response) => {
       const sql = `insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code, user_id) values ($1, $2, $3, $4, $5, $6) returning *`
       const result = await (pool.query(
         sql,
-        [name,phone,address,city,zip_code,userId]))
+        [restaurant_name,phone,address,city,zip_code,userId]))
         res.status(200).json(result.rows)
     } catch (err: any) {
       return res.status(500).json({ err: err.message })
@@ -70,7 +70,7 @@ const createRestaurant = async (req: Request, res: Response) => {
       // Generate a unique filename for the uploaded image
       const fileTitle: string = file.name
       const fileName: string = `${Date.now()}-${file.name}`
-      const uploadPath: string = `./public/images/restaurants/${name}`
+      const uploadPath: string = `./public/images/restaurants/${fileName}`
 
       try {
         await file.mv(uploadPath)
@@ -84,7 +84,7 @@ const createRestaurant = async (req: Request, res: Response) => {
 
         // Insert the restaurant with image_id record into the database
         const restaurantSql = "insert into restaurants (restaurant_name, phone_number, street_address, city, zip_code, user_id, images_id) values ($1,$2,$3,$4,$5,$6,$7) returning *"
-        const result = await pool.query(restaurantSql, [name, phone, address, city, zip_code, userId, imageId])
+        const result = await pool.query(restaurantSql, [restaurant_name, phone, address, city, zip_code, userId, imageId])
         res.status(200).json(result.rows)
       
       } catch (err: any) {
@@ -96,7 +96,7 @@ const createRestaurant = async (req: Request, res: Response) => {
 
   // pool.query(
   //   ",
-  //   [name, phone, address, city, zip_code],
+  //   [restaurant_name, phone, address, city, zip_code],
   //   (err: Error, result: QueryResult) => {
   //     if (err) {
   //       res.status(500).json({ err: err.message });
@@ -112,11 +112,11 @@ const createRestaurant = async (req: Request, res: Response) => {
 // Update an existing restaurant's infomation in the database
 const updateRestaurant = async (req: Request, res: Response) => {
   let id = parseInt(req.params.id);
-  let { name,phone_number,street_address,city,zip_code } = req.body;
+  let { restaurant_name,phone_number,street_address,city,zip_code } = req.body;
 
   pool.query(
     "update restaurants set restaurant_name = $1, phone_number = $2, street_address = $3, city = $4, zip_code = $5 where id= $2 returning *",
-    [name,phone_number,street_address,city,zip_code,id],
+    [restaurant_name,phone_number,street_address,city,zip_code,id],
     (err: Error, result: QueryResult) => {
       if (err) {
         res.status(500).json({ err: err.message });

@@ -16,25 +16,24 @@ addRestaurantBtn.addEventListener('click', () => {
   h1Content.innerText = "New restaurant?"
 
   // Set new attributes for name input
-  restaurantNameInput.setAttribute("name","name")
+  restaurantNameInput.setAttribute("name","restaurant_name")
   restaurantNameInput.setAttribute("type","text")
   restaurantNameInput.setAttribute("required","required")
   restaurantNameInput.removeAttribute("min")
   restaurantNameInput.removeAttribute("max")
+  restaurantNameInput.placeholder = 'Restaurant name *';
 
   // Set new attributes for phone number
-  restaurantPhoneInput.setAttribute("name","phone")
-  restaurantPhoneInput.setAttribute("type","tel")
   restaurantPhoneInput.removeAttribute("min")
   restaurantPhoneInput.removeAttribute("max")
+  restaurantPhoneInput.setAttribute("name","phone")
+  restaurantPhoneInput.setAttribute("type","tel")
+  restaurantPhoneInput.setAttribute("maxlength","14")
+  restaurantPhoneInput.placeholder = 'Phone number'
 
   // Set new attributes for restaurant address
   restaurantAddressInput.setAttribute("name","address")
   restaurantAddressInput.setAttribute("required","required")
-
-  // Update the placehilders for the input fields
-  restaurantNameInput.placeholder = 'Restaurant name *';
-  restaurantPhoneInput.placeholder = 'Phone number'
   restaurantAddressInput.placeholder = 'Address *';
 
   // Clear the inputs and update the form for adding a restaurant
@@ -59,7 +58,10 @@ addRestaurantBtn.addEventListener('click', () => {
   restaurantZipCodeInput.setAttribute("type","tel")
   restaurantZipCodeInput.setAttribute("class","form-control")
   restaurantZipCodeInput.setAttribute("name","zip_code")
+  restaurantZipCodeInput.setAttribute("maxlength","5")
   restaurantZipCodeInput.setAttribute("placeholder","Zip code")
+  restaurantZipCodeInput.setAttribute("required","required")
+
    //restaurantCity.value = '';
   restaurantZipCodeDiv.appendChild(restaurantZipCodeInput)
   // const fileInputDiv = document.querySelector("#file-input")
@@ -80,13 +82,5 @@ addRestaurantBtn.addEventListener('click', () => {
   form.action = 'http://localhost:3001/api/restaurants';
   form.method = 'POST';
 
-
 });
 
-/*
-  "restaurant_name":"Kosmos",
-  "phone_number":"+358 9 647 835",
-  "street_address":"Kalevankatu 3",
-  "city":"Tampere",
-  "zip_code":"00100"
-*/
