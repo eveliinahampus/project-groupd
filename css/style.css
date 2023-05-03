@@ -57,7 +57,7 @@ section{
 }
 
 .hero {
-    background-image: url("../server/public/images/knife-fork1.jpg");
+    background-image: url("../logos/knife-fork1.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
