@@ -11,7 +11,7 @@ This site is deployed via Github Pages in <a href="https://t2haev00.github.io/pr
 ### Roles
 - Frontend Developer/Tester: Hua Chen (<a href="https://github.com/balletty2008">balletty2008</a>) 
 - Product Owner/Scrum Master: Eveliina Hampus (<a href="https://github.com/t2haev00">t2haev00</a>) 
-- Backend Developer: Yerold Sanabria (<a href="https://github.com/doteins">doteins</a>)
+- Backend Developer: Yerold Sanabria (<a href="https://github.com/yeroldsan">yeroldsan</a>)
 - Frontend Developer/Designer: Tomoko Takami (<a href="https://github.com/Tomokazuki">Tomokazuki</a>)
 
 ### Technologies and Programming Languages Used
